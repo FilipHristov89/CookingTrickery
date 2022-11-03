@@ -16,3 +16,35 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*h1 {
+    font-family: "Brush Script MT";
+}
+h3 {
+    font-family: "Brush Script MT";
+}*/
+.navbar-brand {
+    font-family: "Brush Script MT";
+}
+
+.recipes-headers, .ingredient-headers {
+    font-family: "Brush Script MT";
+}
+
+.recent-recipe {
+    display: inline-block;
+    margin-bottom: 0;
+    width: 20rem;
+}
+.cuisine-recipe {
+    display: inline-flex;
+    flex-flow: row wrap;
+    margin-right: 20px;
+    width: 300px;
+    height: 400px;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+}
