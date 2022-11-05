@@ -21,7 +21,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 
     options.Lockout.MaxFailedAccessAttempts = builder.Configuration.GetValue<int>("Identity:MaxFailedAccessAttempts");
     //options.ClaimsIdentity.RoleClaimType
-});
+}).AddEntityFrameworkStores<CookingTrickeryDbContext>();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>

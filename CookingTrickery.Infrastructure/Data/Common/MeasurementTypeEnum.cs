@@ -15,6 +15,11 @@
         taste = 11,
         cup = 12,
         cloves = 13,
-        piece = 14
+        piece = 14,
+        pieces = 15,
+        cups = 16,
+        clove = 17,
+        pinches = 18,
+        handful = 19
     }
 }

@@ -18,6 +18,8 @@
         [MaxLength(CuisineDescriptionMaxLenght)]
         public string Description { get; set; } = null!;
 
+        public ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
+
         public ICollection<User> UsersFavorites { get; set; } = new List<User>();
     }
 }

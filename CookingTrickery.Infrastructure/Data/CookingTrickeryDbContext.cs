@@ -20,13 +20,17 @@ namespace CookingTrickery.Infrastructure.Data
         public DbSet<Cuisine> Cuisines { get; set; } = null!;
         public DbSet<Recipe> Recipes { get; set; } = null!;
         public DbSet<IngredientMeasurement> IngredientMeasurements { get; set; } = null!;
-        public DbSet<UserRecipe> UserRecipes { get; set; } = null!;
+        public DbSet<UsersFavorites> UserRecipes { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new IngredientMeasurementConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new UserRecipeConfiguration());
+            builder.ApplyConfiguration(new UsersFavoriteConfiguration());
+            builder.ApplyConfiguration(new RecipeConfiguration());
+            builder.ApplyConfiguration(new IngredientConfiguration());
+            builder.ApplyConfiguration(new MeasurementConfiguration());
+            builder.ApplyConfiguration(new CuisineConfiguration());
 
             base.OnModelCreating(builder);
         }

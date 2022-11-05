@@ -4,16 +4,18 @@ using CookingTrickery.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CookingTrickery.Data.Migrations
+namespace CookingTrickery.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CookingTrickeryDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106200721_RecipeUserChangesAndSeedDatabase")]
+    partial class RecipeUserChangesAndSeedDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,37 +32,17 @@ namespace CookingTrickery.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Cuisines");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ff8540f2-e7c9-4546-a7d9-f25b42c72b50"),
-                            Description = "British cuisine is the specific set of cooking traditions and practices associated with the United Kingdom. Historically, British cuisine meant \"unfussy dishes made with quality local ingredients, matched with simple sauces to accentuate flavour, rather than disguise it\". International recognition of British cuisine was historically limited to the full breakfast and the Christmas dinner. However, Celtic agriculture and animal breeding produced a wide variety of foodstuffs for indigenous Celts. Anglo-Saxon England developed meat and savoury herb stewing techniques before the practice became common in Europe. The Norman conquest introduced exotic spices into Great Britain in the Middle Ages",
-                            Name = "British Cuisine"
-                        },
-                        new
-                        {
-                            Id = new Guid("b0de4591-35bc-4500-b84f-ee04c64775ea"),
-                            Description = "Mexican cuisine consists of the cooking cuisines and traditions of the modern country of Mexico. Its earliest roots lie in Mesoamerican cuisine. Its ingredients and methods begin with the first agricultural communities such as the Maya who domesticated maize, created the standard process of maize nixtamalization, and established their foodways (Maya cuisine). Successive waves of other Mesoamerican groups brought with them their own cooking methods. These included: the Olmec, Teotihuacanos, Toltec, Huastec, Zapotec, Mixtec, Otomi, Purépecha, Totonac, Mazatec, Mazahua, and Nahua. With the Mexica formation of the multi-ethnic Triple Alliance (Aztec Empire), culinary foodways became infused (Aztec cuisine).",
-                            Name = "Mexican Cuisine"
-                        },
-                        new
-                        {
-                            Id = new Guid("a6521833-8514-4d09-b7c0-9ee03373ffc5"),
-                            Description = "Bulgarian cuisine is a representative of the cuisine of Southeast Europe. It shares characteristics with other Balkan cuisines. Bulgarian cooking traditions are diverse because of geographical factors such as climatic conditions suitable for a variety of vegetables, herbs, and fruit. Aside from the vast variety of local Bulgarian dishes, Bulgarian cuisine shares a number of dishes with Persian, Turkish, and Greek cuisine.Bulgarian food often incorporates salads as appetizers and is also noted for the prominence of dairy products, wines and other alcoholic drinks such as rakia.",
-                            Name = "Bulgarian Cuisine"
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.Ingredient", b =>
@@ -100,7 +82,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("3ea505ff-7e9a-4540-8100-182123ce9605"),
                             Calories = 40,
-                            Description = "An onion , also known as the bulb onion or common onion, is a vegetable that is the most widely cultivated species of the genus Allium.",
+                            Description = "An onion , also known as the bulb onion or common onion, is a vegetable that is the most widely cultivated species of the genus Allium. The shallot is a botanical variety of the onion which was classified as a separate species until 2010. Its close relatives include garlic, scallion, leek, and chive.",
                             Name = "Onion",
                             Origin = "Central Asia",
                             Type = 1
@@ -109,7 +91,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("6e56c040-63ec-4fa8-9c87-ba3a1a732a22"),
                             Calories = 384,
-                            Description = "Olive oil is a liquid fat obtained from olives (the fruit of Olea europaea; family Oleaceae), a traditional tree crop of the Mediterranean Basin.",
+                            Description = "Olive oil is a liquid fat obtained from olives (the fruit of Olea europaea; family Oleaceae), a traditional tree crop of the Mediterranean Basin, produced by pressing whole olives and extracting the oil. It is commonly used in cooking: for frying foods or as a salad dressing. It can be found in some cosmetics, pharmaceuticals, soaps, and fuels for traditional oil lamps. It also has additional uses in some religions. The olive is one of three core food plants in Mediterranean cuisine; the other two are wheat and grapes. Olive trees have been grown around the Mediterranean since the 8th millennium BC.",
                             Name = "Olive Oil",
                             Origin = "Ancient Greek",
                             Type = 3
@@ -118,7 +100,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("0f09aa47-294d-44d4-a0a4-a275ea55e6bc"),
                             Calories = 41,
-                            Description = "The carrot (Daucus carota subsp. sativus) is a root vegetable, typically orange in color, though purple, black, red, white, and yellow cultivars exist",
+                            Description = "The carrot (Daucus carota subsp. sativus) is a root vegetable, typically orange in color, though purple, black, red, white, and yellow cultivars exist,[2][3][4] all of which are domesticated forms of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are also eaten. The domestic carrot has been selectively bred for its enlarged, more palatable, less woody-textured taproot.",
                             Name = "Carrot",
                             Origin = "Central Asia",
                             Type = 1
@@ -127,7 +109,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("9752dbe2-cf14-4393-bbd7-f28fa6ff617b"),
                             Calories = 149,
-                            Description = "Garlic (Allium sativum) is a species of bulbous flowering plant in the genus Allium. Its close relatives include the onion, shallot, leek, chive,",
+                            Description = "Garlic (Allium sativum) is a species of bulbous flowering plant in the genus Allium. Its close relatives include the onion, shallot, leek, chive,[2] Welsh onion and Chinese onion.[3] It is native to South Asia, Central Asia and northeastern Iran and has long been used as a seasoning worldwide, with a history of several thousand years of human consumption and use.[4][5] It was known to ancient Egyptians and has been used as both a food flavoring and a traditional medicine.[6][7] China produces 76% of the world's supply of garlic",
                             Name = "Garlic",
                             Origin = "Middle East",
                             Type = 1
@@ -136,7 +118,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("485c2be4-8417-4ed1-90b6-467cbce9d46a"),
                             Calories = 77,
-                            Description = "The potato is a starchy tuber of the plant Solanum tuberosum and is a root vegetable native to the Americas.",
+                            Description = "The potato is a starchy tuber of the plant Solanum tuberosum and is a root vegetable native to the Americas. The plant is a perennial in the nightshade family Solanaceae.Wild potato species can be found from the southern United States to southern Chile.The potato was originally believed to have been domesticated by Native Americans independently in multiple locations,[4] but later genetic studies traced a single origin, in the area of present-day southern Peru and extreme northwestern Bolivia. Potatoes were domesticated there approximately 7,000–10,000 years ago, from a species in the Solanum brevicaule complex.In the Andes region of South America, where the species is indigenous, some close relatives of the potato are cultivated.",
                             Name = "Potato",
                             Origin = "South America",
                             Type = 1
@@ -145,7 +127,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("36d126d9-e4ae-47e7-ac09-937e0a8ebf6d"),
                             Calories = 250,
-                            Description = "Beef is the culinary name for meat from cattle (Bos taurus).In prehistoric times, humankind hunted aurochs and later domesticated them.",
+                            Description = "Beef is the culinary name for meat from cattle (Bos taurus).In prehistoric times, humankind hunted aurochs and later domesticated them. Since that time, numerous breeds of cattle have been bred specifically for the quality or quantity of their meat. Today, beef is the third most widely consumed meat in the world, after pork and poultry. As of 2018, the United States, Brazil, and China were the largest producers of beef.",
                             Name = "Beef",
                             Origin = "All over the world",
                             Type = 2
@@ -154,7 +136,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("ca39cc0d-6b7c-4226-a912-80bd7a56e7e7"),
                             Calories = 100,
-                            Description = "Beef broth is usually the liquid meat is cooked in, sometimes with added vegetables.",
+                            Description = "Beef broth is usually the liquid meat is cooked in, sometimes with added vegetables. Broth is usually seasoned with herbs and spices, and sometimes a splash of wine or acid to balance the flavors to be drinkable on its own. Beef stock is more meaty flavored than beef broth.",
                             Name = "Beef broth",
                             Origin = "All over the world",
                             Type = 22
@@ -163,7 +145,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("39af066a-8e5b-4942-bd68-932714284d66"),
                             Calories = 78,
-                            Description = "Worcestershire sauce, sometimes called Worcester sauce, is a fermented liquid condiment invented in the city of Worcester in Worcestershire, England, during the first half of the 19th century.",
+                            Description = "Worcestershire sauce, sometimes called Worcester sauce, is a fermented liquid condiment invented in the city of Worcester in Worcestershire, England, during the first half of the 19th century. The inventors were the pharmacists John Wheeley Lea and William Henry Perrins, who went on to form the company Lea & Perrins. Worcestershire sauce has been a generic term since 1876, when the English High Court of Justice ruled that Lea & Perrins did not own a trademark for the name Worcestershire.",
                             Name = "Worcestershire sauce",
                             Origin = "United Kingdom",
                             Type = 4
@@ -172,7 +154,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("28aeedac-d707-4ae8-8404-fcf89a3719a3"),
                             Calories = 82,
-                            Description = "Tomato paste is a thick paste made by cooking tomatoes for several hours to reduce the water content, straining out the seeds and skins, and cooking the liquid again to reduce the base to a thick, rich concentrate.",
+                            Description = "Tomato paste is a thick paste made by cooking tomatoes for several hours to reduce the water content, straining out the seeds and skins, and cooking the liquid again to reduce the base to a thick, rich concentrate.[1] It is used to impart an intense tomato flavour to a variety of dishes, such as pasta, soups and braised meat. It is used heavily in Italian cultured food.By contrast, tomato purée is a liquid with a thinner consistency than tomato paste, while tomato sauce is even thinner in consistency",
                             Name = "Tomato paste",
                             Origin = "All over the world",
                             Type = 25
@@ -181,7 +163,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("551e0516-e39a-4359-8211-d97e4152abcc"),
                             Calories = 1,
-                            Description = "Thyme has always been a considered a plant that could grant courage. ",
+                            Description = "Thyme has always been a considered a plant that could grant courage. In fact, Medieval knights often tucked it in their armor as a charm when they went to war. This practice was understandable as the Greek word “thymus”, for which the herb was named after, means courage.",
                             Name = "Dried thyme",
                             Origin = "Mediterranean region",
                             Type = 11
@@ -190,7 +172,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("3a48aa8a-d9a3-43f5-bc8b-d98d1515ec43"),
                             Calories = 1,
-                            Description = "Though originally from Europe and the Mediterranean, many Americans see it as a classic and patriotic spice.",
+                            Description = "Though originally from Europe and the Mediterranean, many Americans see it as a classic and patriotic spice. Perfect on chicken, lamb, game, beef, and pork, rosemary should always make an appearance at the dinner table for whatever holiday it is.",
                             Name = "Dried rosemary",
                             Origin = "Europe",
                             Type = 11
@@ -208,7 +190,7 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("e61604a4-9f1e-45db-b840-b82e7327cd28"),
                             Calories = 1,
-                            Description = "The bay leaf is an aromatic leaf commonly used in cooking. It can be used whole, either dried or fresh, in which case it is removed from the dish before consumption, or less commonly used in ground form.",
+                            Description = "The bay leaf is an aromatic leaf commonly used in cooking. It can be used whole, either dried or fresh, in which case it is removed from the dish before consumption, or less commonly used in ground form. It may come from several species of tree, the Bay laurel and the California bay tree being the most common. The flavor that a bay leaf imparts to a dish has not been universally agreed upon, but most agree it is a subtle addition.",
                             Name = "Bay leaves",
                             Origin = "Mediterranean region",
                             Type = 11
@@ -217,7 +199,16 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("630c4443-28ff-4aba-a48b-6dbe6c64b033"),
                             Calories = 1,
-                            Description = "Flour is a powder made by grinding raw grains, roots, beans, nuts, or seeds.",
+                            Description = "Flour is a powder made by grinding raw grains, roots, beans, nuts, or seeds. Flours are used to make many different foods. Cereal flour, particularly wheat flour, is the main ingredient of bread, which is a staple food for many cultures. Corn flour has been important in Mesoamerican cuisine since ancient times and remains a staple in the Americas. Rye flour is a constituent of bread in central and northern Europe..",
+                            Name = "All-purpose Flour",
+                            Origin = "All over the world",
+                            Type = 13
+                        },
+                        new
+                        {
+                            Id = new Guid("7ddb140b-f530-4f1c-90f5-9cc6761f1551"),
+                            Calories = 50,
+                            Description = "Flour is a powder made by grinding raw grains, roots, beans, nuts, or seeds. Flours are used to make many different foods. Cereal flour, particularly wheat flour, is the main ingredient of bread, which is a staple food for many cultures. Corn flour has been important in Mesoamerican cuisine since ancient times and remains a staple in the Americas. Rye flour is a constituent of bread in central and northern Europe..",
                             Name = "All-purpose Flour",
                             Origin = "All over the world",
                             Type = 13
@@ -226,116 +217,34 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = new Guid("52a20631-47f3-45c7-a1fe-a41802908375"),
                             Calories = 5,
-                            Description = "Parsley, or garden parsley (Petroselinum crispum) is a species of flowering plant in the family Apiaceae that is native to the central and eastern Mediterranean region ",
+                            Description = "Flour is a powder made by grinding raw grains, roots, beans, nuts, or seeds. Flours are used to make many different foods. Cereal flour, particularly wheat flour, is the main ingredient of bread, which is a staple food for many cultures. Corn flour has been important in Mesoamerican cuisine since ancient times and remains a staple in the Americas. Rye flour is a constituent of bread in central and northern Europe..",
                             Name = "Fresh Parsley",
                             Origin = "Mediterranean region",
-                            Type = 1
+                            Type = 13
                         });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.IngredientMeasurement", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MeasurementId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Measurement")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("RecipeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("IngredientId");
+                    b.HasKey("IngredientId", "MeasurementId");
 
                     b.HasIndex("MeasurementId");
 
                     b.HasIndex("RecipeId");
 
                     b.ToTable("IngredientMeasurements");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8b6883eb-c59b-4ea3-b295-9e9de6881961"),
-                            IngredientId = new Guid("3ea505ff-7e9a-4540-8100-182123ce9605"),
-                            MeasurementId = new Guid("df4924db-cdc2-44f4-9ab0-b181c26c5e93"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("83674210-f4dd-45d6-bafd-08d0c41cd377"),
-                            IngredientId = new Guid("0f09aa47-294d-44d4-a0a4-a275ea55e6bc"),
-                            MeasurementId = new Guid("27c6be3e-3404-4525-9a05-b3b4811ad2dd"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("6a26c5ae-76d0-4c62-bf05-099c6c91cadc"),
-                            IngredientId = new Guid("9752dbe2-cf14-4393-bbd7-f28fa6ff617b"),
-                            MeasurementId = new Guid("a6cd1e21-4010-4bfc-8b31-be5776aa2a7a"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("9e8902ca-1b4d-4cf1-ac7a-10bbd83e0b41"),
-                            IngredientId = new Guid("485c2be4-8417-4ed1-90b6-467cbce9d46a"),
-                            MeasurementId = new Guid("c2106501-d1ce-4eb0-9c91-82a4898fcb67"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("f2cf0b9e-5833-4e35-a702-4a9fbf894fe0"),
-                            IngredientId = new Guid("36d126d9-e4ae-47e7-ac09-937e0a8ebf6d"),
-                            MeasurementId = new Guid("dec7d41c-542f-41be-8ca4-e95aaa5a1fdd"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b7741e3d-743b-4aef-b20d-c6a81596ae83"),
-                            IngredientId = new Guid("ca39cc0d-6b7c-4226-a912-80bd7a56e7e7"),
-                            MeasurementId = new Guid("8b1d8496-58a3-405f-8bc2-036867407274"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b4ab7081-66da-4475-b74c-fe884afdaf70"),
-                            IngredientId = new Guid("39af066a-8e5b-4942-bd68-932714284d66"),
-                            MeasurementId = new Guid("451e6845-3dde-44fa-9787-37d2f12fab0b"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("6aa10633-e0b0-4fe7-b51b-648ec0317eb7"),
-                            IngredientId = new Guid("28aeedac-d707-4ae8-8404-fcf89a3719a3"),
-                            MeasurementId = new Guid("bb9b314b-faa4-4e3b-ac45-b0fd25aa987c"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("1b35c331-ed11-4b77-8f3e-05bf7ab96514"),
-                            IngredientId = new Guid("551e0516-e39a-4359-8211-d97e4152abcc"),
-                            MeasurementId = new Guid("77264a66-b4a2-4657-abf7-9db4e7b1adf9"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("910a86d1-d35e-423a-b987-7a7650f24087"),
-                            IngredientId = new Guid("3a48aa8a-d9a3-43f5-bc8b-d98d1515ec43"),
-                            MeasurementId = new Guid("b5a9d637-315c-416b-98f9-ee5f702833de"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b39e2204-0651-487c-8192-da80bdab12de"),
-                            IngredientId = new Guid("6e56c040-63ec-4fa8-9c87-ba3a1a732a22"),
-                            MeasurementId = new Guid("fadac7a7-abb2-4e75-93f4-b42ac441bed5"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.Measurement", b =>
@@ -485,8 +394,8 @@ namespace CookingTrickery.Data.Migrations
 
                     b.Property<string>("QuickDescription")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
@@ -502,20 +411,6 @@ namespace CookingTrickery.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f"),
-                            CreatedOn = new DateTime(2022, 11, 7, 21, 55, 51, 677, DateTimeKind.Local).AddTicks(2581),
-                            CuisineId = new Guid("ff8540f2-e7c9-4546-a7d9-f25b42c72b50"),
-                            Description = "Heat olive oil in a large cast iron skillet over medium heat.Season beef with salt and pepper, to taste. Add beef to the skillet and cook until evenly browned, about 2-3 minutes.Place beef, potatoes, carrots, onion and garlic into a 6-qt slow cooker. Stir in beef broth, tomato paste, Worcestershire, thyme, rosemary, paprika, caraway seeds and bay leaves until well combined; season with salt and pepper, to taste.Cover and cook on low heat for 7-8 hours or high heat for 3-4 hours.In a small bowl, whisk together flour and 1/2 cup stew broth. Stir in flour mixture into the slow cooker. Cover and cook on high heat for an additional 30 minutes, or until thickened.Serve immediately, garnished with parsley, if desired.",
-                            Name = "Slow Cooked Beef Stew",
-                            NumberOfServing = 4,
-                            PrepTime = "8 hours",
-                            QuickDescription = "Everyone’s favorite cozy beef stew made in the crockpot! The meat is SO TENDER and the stew is rich",
-                            UserId = "0093ae6c-d848-43bf-bc62-01c5e684f4a4"
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.UsersFavorites", b =>
@@ -763,44 +658,6 @@ namespace CookingTrickery.Data.Migrations
                     b.HasIndex("FavoriteCuisineId");
 
                     b.HasDiscriminator().HasValue("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "0093ae6c-d848-43bf-bc62-01c5e684f4a4",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "641e8adc-5075-4752-98c6-443a7f189c58",
-                            Email = "f.g.hristov@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "F.G.HRISTOV@GMAIL.COM",
-                            NormalizedUserName = "FROZSTY",
-                            PasswordHash = "AQAAAAEAACcQAAAAELYEOrvRk0/2k8agvVg8s+Y9wHdYlN2vZyrlFZhpUjlCTrVaH7OnbJQCGO53QNAvyA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2949165c-9fea-4191-bb70-4a18a2062593",
-                            TwoFactorEnabled = false,
-                            UserName = "Frozsty",
-                            FirstName = "Filip",
-                            LastName = "Hristov"
-                        },
-                        new
-                        {
-                            Id = "bc60d5f7-3884-42c6-9fb5-e1db55094536",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4213d3a-ab3b-4e5f-aea9-3c9a6a6e2468",
-                            Email = "guest@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GUEST@GMAIL.COM",
-                            NormalizedUserName = "GUEST",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOa2JXSGVrtNh5oRUWVqT6ZxgI+bIy/CiEUQfIF9nxdCyIm2a1IdbPi0Byqa1Gm6/w==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "718e8641-78a2-4c93-82ae-98a899de8447",
-                            TwoFactorEnabled = false,
-                            UserName = "Guest",
-                            FirstName = "Petar",
-                            LastName = "Petrov"
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.IngredientMeasurement", b =>
@@ -811,7 +668,7 @@ namespace CookingTrickery.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CookingTrickery.Infrastructure.Data.Entities.Measurement", "Measurement")
+                    b.HasOne("CookingTrickery.Infrastructure.Data.Entities.Measurement", null)
                         .WithMany("IngredientsMeasurements")
                         .HasForeignKey("MeasurementId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -824,8 +681,6 @@ namespace CookingTrickery.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Ingredient");
-
-                    b.Navigation("Measurement");
 
                     b.Navigation("Recipe");
                 });
@@ -841,7 +696,7 @@ namespace CookingTrickery.Data.Migrations
                     b.HasOne("CookingTrickery.Infrastructure.Data.Entities.User", "User")
                         .WithMany("UserRecipes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cuisine");

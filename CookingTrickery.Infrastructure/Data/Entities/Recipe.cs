@@ -17,7 +17,7 @@
         [MaxLength(RecipeQuickDecriptionMaxLenght)]
         public string QuickDescription { get; set; } = null!;
 
-        public List<IngredientMeasurement> Ingredients { get; set; } = new List<IngredientMeasurement>();
+        public ICollection<IngredientMeasurement> Ingredients { get; set; } = new List<IngredientMeasurement>();
         
         public Guid CuisineId { get; set; }
         [ForeignKey(nameof(CuisineId))]
@@ -29,12 +29,19 @@
 
         public int NumberOfServing { get; set; }
 
-        public double PrepTime { get; set; }
+        [Required]
+        [MaxLength(RecipePrepTimeMaxLength)]
+        public string PrepTime { get; set; } = null!;
 
         public double? Rating { get; set; }
 
-        public ICollection<UserRecipe> UsersRecipes { get; set; } = new List<UserRecipe>();
+        [Required]
+        public string UserId { get; set; } = null!;
+        [ForeignKey(nameof(UserId))]
+        public User User { get; set; } = null!;
 
-        public ICollection<User> UsersFavorites { get; set; } = new List<User>();
+        public ICollection<UsersFavorites> UsersFavorites { get; set; } = new List<UsersFavorites>();
+
+        public DateTime CreatedOn { get; set; }
     }
 }

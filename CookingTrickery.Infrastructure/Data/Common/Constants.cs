@@ -6,9 +6,11 @@
         {
             public const int RecipeNameMaxLenght = 70;
 
-            public const int RecipeQuickDecriptionMaxLenght = 100;
+            public const int RecipeQuickDecriptionMaxLenght = 300;
 
             public const int RecipeDescriptionMaxLenght = 4000;
+
+            public const int RecipePrepTimeMaxLength = 30;
         }
 
         public static class IngredientConstants
@@ -17,16 +19,16 @@
 
             public const int IngredientTypeMaxLenght = 30;
 
-            public const int IngredientDescriptionMaxLenght = 500;
+            public const int IngredientDescriptionMaxLenght = 1000;
 
             public const int IngredientOriginMaxLenght = 20;
         }
 
         public static class CuisineConstants
         {
-            public const int CuisineNameMaxLenght = 40;
+            public const int CuisineNameMaxLenght = 60;
 
-            public const int CuisineDescriptionMaxLenght = 200;
+            public const int CuisineDescriptionMaxLenght = 800;
         }
 
         public static class MeasurementConstants

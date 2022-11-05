@@ -4,16 +4,18 @@ using CookingTrickery.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CookingTrickery.Data.Migrations
+namespace CookingTrickery.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CookingTrickeryDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221107193410_SeedDatabaseCuisineRedo")]
+    partial class SeedDatabaseCuisineRedo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,85 +259,6 @@ namespace CookingTrickery.Data.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("IngredientMeasurements");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8b6883eb-c59b-4ea3-b295-9e9de6881961"),
-                            IngredientId = new Guid("3ea505ff-7e9a-4540-8100-182123ce9605"),
-                            MeasurementId = new Guid("df4924db-cdc2-44f4-9ab0-b181c26c5e93"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("83674210-f4dd-45d6-bafd-08d0c41cd377"),
-                            IngredientId = new Guid("0f09aa47-294d-44d4-a0a4-a275ea55e6bc"),
-                            MeasurementId = new Guid("27c6be3e-3404-4525-9a05-b3b4811ad2dd"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("6a26c5ae-76d0-4c62-bf05-099c6c91cadc"),
-                            IngredientId = new Guid("9752dbe2-cf14-4393-bbd7-f28fa6ff617b"),
-                            MeasurementId = new Guid("a6cd1e21-4010-4bfc-8b31-be5776aa2a7a"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("9e8902ca-1b4d-4cf1-ac7a-10bbd83e0b41"),
-                            IngredientId = new Guid("485c2be4-8417-4ed1-90b6-467cbce9d46a"),
-                            MeasurementId = new Guid("c2106501-d1ce-4eb0-9c91-82a4898fcb67"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("f2cf0b9e-5833-4e35-a702-4a9fbf894fe0"),
-                            IngredientId = new Guid("36d126d9-e4ae-47e7-ac09-937e0a8ebf6d"),
-                            MeasurementId = new Guid("dec7d41c-542f-41be-8ca4-e95aaa5a1fdd"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b7741e3d-743b-4aef-b20d-c6a81596ae83"),
-                            IngredientId = new Guid("ca39cc0d-6b7c-4226-a912-80bd7a56e7e7"),
-                            MeasurementId = new Guid("8b1d8496-58a3-405f-8bc2-036867407274"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b4ab7081-66da-4475-b74c-fe884afdaf70"),
-                            IngredientId = new Guid("39af066a-8e5b-4942-bd68-932714284d66"),
-                            MeasurementId = new Guid("451e6845-3dde-44fa-9787-37d2f12fab0b"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("6aa10633-e0b0-4fe7-b51b-648ec0317eb7"),
-                            IngredientId = new Guid("28aeedac-d707-4ae8-8404-fcf89a3719a3"),
-                            MeasurementId = new Guid("bb9b314b-faa4-4e3b-ac45-b0fd25aa987c"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("1b35c331-ed11-4b77-8f3e-05bf7ab96514"),
-                            IngredientId = new Guid("551e0516-e39a-4359-8211-d97e4152abcc"),
-                            MeasurementId = new Guid("77264a66-b4a2-4657-abf7-9db4e7b1adf9"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("910a86d1-d35e-423a-b987-7a7650f24087"),
-                            IngredientId = new Guid("3a48aa8a-d9a3-43f5-bc8b-d98d1515ec43"),
-                            MeasurementId = new Guid("b5a9d637-315c-416b-98f9-ee5f702833de"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        },
-                        new
-                        {
-                            Id = new Guid("b39e2204-0651-487c-8192-da80bdab12de"),
-                            IngredientId = new Guid("6e56c040-63ec-4fa8-9c87-ba3a1a732a22"),
-                            MeasurementId = new Guid("fadac7a7-abb2-4e75-93f4-b42ac441bed5"),
-                            RecipeId = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f")
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.Measurement", b =>
@@ -502,20 +425,6 @@ namespace CookingTrickery.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f"),
-                            CreatedOn = new DateTime(2022, 11, 7, 21, 55, 51, 677, DateTimeKind.Local).AddTicks(2581),
-                            CuisineId = new Guid("ff8540f2-e7c9-4546-a7d9-f25b42c72b50"),
-                            Description = "Heat olive oil in a large cast iron skillet over medium heat.Season beef with salt and pepper, to taste. Add beef to the skillet and cook until evenly browned, about 2-3 minutes.Place beef, potatoes, carrots, onion and garlic into a 6-qt slow cooker. Stir in beef broth, tomato paste, Worcestershire, thyme, rosemary, paprika, caraway seeds and bay leaves until well combined; season with salt and pepper, to taste.Cover and cook on low heat for 7-8 hours or high heat for 3-4 hours.In a small bowl, whisk together flour and 1/2 cup stew broth. Stir in flour mixture into the slow cooker. Cover and cook on high heat for an additional 30 minutes, or until thickened.Serve immediately, garnished with parsley, if desired.",
-                            Name = "Slow Cooked Beef Stew",
-                            NumberOfServing = 4,
-                            PrepTime = "8 hours",
-                            QuickDescription = "Everyone’s favorite cozy beef stew made in the crockpot! The meat is SO TENDER and the stew is rich",
-                            UserId = "0093ae6c-d848-43bf-bc62-01c5e684f4a4"
-                        });
                 });
 
             modelBuilder.Entity("CookingTrickery.Infrastructure.Data.Entities.UsersFavorites", b =>
@@ -769,15 +678,15 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = "0093ae6c-d848-43bf-bc62-01c5e684f4a4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "641e8adc-5075-4752-98c6-443a7f189c58",
+                            ConcurrencyStamp = "0408113c-3bb2-4917-ace8-2508308007b2",
                             Email = "f.g.hristov@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "F.G.HRISTOV@GMAIL.COM",
                             NormalizedUserName = "FROZSTY",
-                            PasswordHash = "AQAAAAEAACcQAAAAELYEOrvRk0/2k8agvVg8s+Y9wHdYlN2vZyrlFZhpUjlCTrVaH7OnbJQCGO53QNAvyA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAyplOTeAaJunanvZ80HoslV0/axKvdBbF3iCnRiFCqBle51eaGfv3j6V0JG0GQ4iw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2949165c-9fea-4191-bb70-4a18a2062593",
+                            SecurityStamp = "1e37dcc9-497f-4491-b963-fef4a834687e",
                             TwoFactorEnabled = false,
                             UserName = "Frozsty",
                             FirstName = "Filip",
@@ -787,15 +696,15 @@ namespace CookingTrickery.Data.Migrations
                         {
                             Id = "bc60d5f7-3884-42c6-9fb5-e1db55094536",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4213d3a-ab3b-4e5f-aea9-3c9a6a6e2468",
+                            ConcurrencyStamp = "ef270461-6e7c-496d-8f61-464c05adaf6a",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOa2JXSGVrtNh5oRUWVqT6ZxgI+bIy/CiEUQfIF9nxdCyIm2a1IdbPi0Byqa1Gm6/w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPardH3+JJRXXeG6rDLkUTu2d+rKKuBDP6E054nktEnRUw5vdkLNmJqsQkxJ0FNF2g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "718e8641-78a2-4c93-82ae-98a899de8447",
+                            SecurityStamp = "a8152185-51f6-4f83-b5ec-5277228064bd",
                             TwoFactorEnabled = false,
                             UserName = "Guest",
                             FirstName = "Petar",
@@ -820,7 +729,7 @@ namespace CookingTrickery.Data.Migrations
                     b.HasOne("CookingTrickery.Infrastructure.Data.Entities.Recipe", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Ingredient");
@@ -835,13 +744,13 @@ namespace CookingTrickery.Data.Migrations
                     b.HasOne("CookingTrickery.Infrastructure.Data.Entities.Cuisine", "Cuisine")
                         .WithMany("Recipes")
                         .HasForeignKey("CuisineId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CookingTrickery.Infrastructure.Data.Entities.User", "User")
                         .WithMany("UserRecipes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cuisine");

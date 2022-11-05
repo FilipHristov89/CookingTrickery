@@ -1,5 +1,6 @@
 ﻿namespace CookingTrickery.Infrastructure.Data.Entities
 {
+    using CookingTrickery.Infrastructure.Data.Common;
     using System.ComponentModel.DataAnnotations;
 
     using static Data.Common.Constants.IngredientConstants;
@@ -16,7 +17,7 @@
 
         [Required]
         [MaxLength(IngredientTypeMaxLenght)]
-        public string Type { get; set; } = null!;
+        public IngredientTypeEnum Type { get; set; }
 
         [Required]
         public int Calories { get; set; }

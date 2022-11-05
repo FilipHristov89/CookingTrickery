@@ -5,6 +5,9 @@ namespace CookingTrickery.Infrastructure.Data.Entities
 {
     public class IngredientMeasurement
     {
+        [Key]
+        public Guid Id { get; set; }
+
         [Required]
         public Guid IngredientId { get; set; }
         [ForeignKey(nameof(IngredientId))]
@@ -13,11 +16,11 @@ namespace CookingTrickery.Infrastructure.Data.Entities
         [Required]
         public Guid MeasurementId { get; set; }
         [ForeignKey(nameof(MeasurementId))]
-        public int Measurement { get; set; }
+        public Measurement Measurement { get; set; } 
 
         [Required]
         public Guid RecipeId { get; set; }
         [ForeignKey(nameof(RecipeId))]
-        public Recipe Recipe { get; set; }
+        public Recipe Recipe { get; set; } = null!;
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CookingTrickery.Infrastructure.Data.Entities
 {
-    public class UserRecipe
+    public class UsersFavorites
     {
         [Required]
         public string UserId { get; set; } = null!;

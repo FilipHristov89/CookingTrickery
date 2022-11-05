@@ -15,16 +15,13 @@ namespace CookingTrickery.Infrastructure.Data.Entities
         [MaxLength(UserLastNameMaxLenght)]
         public string LastName { get; set; } = null!;
 
-        public Guid FavoriteCuisineId { get; set; }
+        public Guid? FavoriteCuisineId { get; set; }
         
         [ForeignKey(nameof(FavoriteCuisineId))]
-        public Cuisine FavoriteCuisine { get; set; } = null!;
+        public Cuisine? FavoriteCuisine { get; set; } = null!;
 
-        public Guid FavoriteRecipeId { get; set; }
+        public ICollection<Recipe> UserRecipes { get; set; } = new List<Recipe>();
 
-        [ForeignKey(nameof(FavoriteCuisineId))]
-        public Recipe FavoriteRecipe { get; set; } = null!;
-
-        public List<UserRecipe> UsersRecipes { get; set; } = new List<UserRecipe>();
+        public ICollection<UsersFavorites> FavoriteRecipes { get; set; } = new List<UsersFavorites>();
     }
 }
