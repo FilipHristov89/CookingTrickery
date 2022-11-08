@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Reflection.Metadata;
     using static Data.Common.Constants.RecipeConstants;
     public class Recipe
     {
@@ -16,6 +17,9 @@
         [Required]
         [MaxLength(RecipeQuickDecriptionMaxLenght)]
         public string QuickDescription { get; set; } = null!;
+        
+        [Required]
+        public string ImageUrl { get; set; } = null!;
 
         public ICollection<IngredientMeasurement> Ingredients { get; set; } = new List<IngredientMeasurement>();
         

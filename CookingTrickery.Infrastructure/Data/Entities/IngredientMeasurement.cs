@@ -16,7 +16,7 @@ namespace CookingTrickery.Infrastructure.Data.Entities
         [Required]
         public Guid MeasurementId { get; set; }
         [ForeignKey(nameof(MeasurementId))]
-        public Measurement Measurement { get; set; } 
+        public Measurement Measurement { get; set; } = null!;
 
         [Required]
         public Guid RecipeId { get; set; }

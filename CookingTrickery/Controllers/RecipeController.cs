@@ -1,17 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CookingTrickery.Core.Contracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookingTrickery.Controllers
 {
     public class RecipeController : Controller
     {
-        public IActionResult All()
+        private IRecipeService recipeService;
+
+        public RecipeController(IRecipeService _recipeService)
         {
-            return View();
+            recipeService = _recipeService;
         }
 
-        public IActionResult Recipe()
+        public async Task<IActionResult> All()
         {
-            return View();
+            var model = await recipeService.GetAllRecipeAsync();
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Recipe(Guid id)
+        {
+            var model = await recipeService.GetRecipeAsync(id);
+
+            return View(model);
         }
     }
 }

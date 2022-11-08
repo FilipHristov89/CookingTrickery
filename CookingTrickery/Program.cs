@@ -29,11 +29,14 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(0, new DoubleModelBinderProvider());
     });
 
+builder.Services.AddAplicationServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else

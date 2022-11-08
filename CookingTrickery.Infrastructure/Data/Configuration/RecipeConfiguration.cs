@@ -52,7 +52,9 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
                     CuisineId = Guid.Parse("ff8540f2-e7c9-4546-a7d9-f25b42c72b50"),
                     NumberOfServing = 4,
                     CreatedOn = DateTime.Now.ToLocalTime(),
-                    UserId = "0093ae6c-d848-43bf-bc62-01c5e684f4a4"
+                    UserId = "0093ae6c-d848-43bf-bc62-01c5e684f4a4",
+                    ImageUrl = "https://s23209.pcdn.co/wp-content/uploads/2016/10/221024_DD_Slow-Cooker-Beef-Stew_218-760x1140.jpg"
+
                 }
             };
 

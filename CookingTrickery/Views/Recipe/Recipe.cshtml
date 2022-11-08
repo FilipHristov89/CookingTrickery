@@ -1,13 +1,14 @@
-﻿@{
+﻿@model RecipeViewModel
+@{
     ViewData["Title"] = "Recipe";
 }
 
-<h1 class="display-1 recipes-headers">Papardele</h1>
+<h1 class="display-1 recipes-headers">@Model.Name</h1>
 
 <div class="recipe-container">
-    <div class="recipe-quickdescr">A delicious pasta</div>
+    <div class="recipe-quickdescr">@Model.QuickDescription</div>
     <div class="recipe-body">
-        <img src="https://s23209.pcdn.co/wp-content/uploads/2022/04/211129_DAMN-DELICIOUS_Creamy-Chx-Noodle-Soup_089-760x1140.jpg">
+        <img src="@Model.ImageUrl">
         <div class="ingredient-list">
             <h4>
                 <span>Ingredients</span>
@@ -23,12 +24,10 @@
             </ul>
         </div>
         <div class="time-portions">
-            <p>Portions: 2</p> <p>Time : 30min</p>
+            <p>Portions: @Model.NumberOfServings</p> <p>Time : @Model.PrepTime</p>
         </div>
         <div class="recipe-descr">
-            Heat olive oil in a large stockpot or Dutch oven over medium heat. Season chicken with 1 teaspoon salt and 1/2 teaspoon pepper. Working in batches, add chicken to the stockpot and cook, stirring occasionally, until evenly browned, about 6-8 minutes; set aside
-            Add onion. Cook, stirring occasionally, until tender, about 3-4 minutes. Stir in garlic until fragrant, about 1 minute. On a seperate hot pan fried the bacon untin golden and crispy.
-            Add the bacon to the onions, then the heavy cream, simmer for 5-10 min, add the chicken.Serve with sprink of parsly
+            @Model.Description
         </div>
 
         <div class="rating">5</div>
