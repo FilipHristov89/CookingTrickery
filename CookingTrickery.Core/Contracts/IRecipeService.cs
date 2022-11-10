@@ -1,4 +1,4 @@
-﻿using CookingTrickery.Core.Models;
+﻿using CookingTrickery.Core.Models.Recipe;
 using System;
 using System.Collections;
 using System.Collections.Generic;

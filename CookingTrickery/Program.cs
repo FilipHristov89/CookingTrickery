@@ -3,6 +3,7 @@ using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using CookingTrickery.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

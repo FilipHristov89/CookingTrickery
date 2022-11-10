@@ -1,0 +1,17 @@
+﻿@model IEnumerable<IngredientByTypeViewModel>
+
+@{
+    string ingredientType = @Model.First().Type.ToString();
+    @ViewBag.Title = ingredientType;
+}
+
+<h1>@(ingredientType)</h1>
+<div>
+    <div>
+        @foreach (var ingredient in Model)
+        {
+            <img src="@ingredient.ImageUrl"/>
+            <p>@ingredient.Name</p>
+        }
+    </div>
+</div>

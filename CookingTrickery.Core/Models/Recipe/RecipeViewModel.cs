@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CookingTrickery.Core.Models
+namespace CookingTrickery.Core.Models.Recipe
 {
     public class RecipeViewModel
     {
@@ -18,11 +18,7 @@ namespace CookingTrickery.Core.Models
 
         public string ImageUrl { get; set; } = null!;
 
-        //public string Ingredients { get; set; } = null!;
-
-        //public double Quantity { get; set; }
-
-        //public string Measurement { get; set; } = null!;
+        public ICollection<RecipeIngredientModel> Ingredients { get; set; } = new List<RecipeIngredientModel>();
 
         public string Cuisine { get; set; } = null!;
 

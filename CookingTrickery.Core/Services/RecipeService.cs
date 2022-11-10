@@ -1,12 +1,9 @@
 ﻿using CookingTrickery.Core.Contracts;
-using CookingTrickery.Core.Models;
+using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data;
+using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CookingTrickery.Core.Services
 {
@@ -53,6 +50,15 @@ namespace CookingTrickery.Core.Services
                     QuickDescription = r.QuickDescription,
                     ImageUrl = r.ImageUrl,
                     Cuisine = r.Cuisine.Name,
+                    Ingredients = r.Ingredients
+                        .Select(i => new RecipeIngredientModel()
+                        {
+                            Ingredient = i.Ingredient.Name,
+                            Quantity = i.Measurement.Quantity,
+                            Measurement = i.Measurement.MeasurementType.ToString()
+                        })
+                        .OrderBy(i => i.Ingredient)
+                        .ToList(),
                     NumberOfServings = r.NumberOfServing,
                     PrepTime = r.PrepTime,
                     Description = r.Description,
@@ -62,5 +68,17 @@ namespace CookingTrickery.Core.Services
 
             return entity;
         }
+
+        //private async Task<ICollection<RecipeIngredientModel>> GetRecipeIngredientsAsync(Guid id)
+        //{
+        //    var ingredients = await context
+        //        .Recipes
+        //        .Where(r => r.Id == id)
+        //        .Include(r => r.Ingredients)
+        //        .ToListAsync()
+
+        //        .Select(r => r.Ingredients)
+                
+        //}
     }
 }

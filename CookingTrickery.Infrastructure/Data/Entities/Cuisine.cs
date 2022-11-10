@@ -13,6 +13,9 @@
         [Required]
         [MaxLength(CuisineNameMaxLenght)]
         public string Name { get; set; } = null!;
+        
+        [Required]
+        public string ImageUrl { get; set; } = null!;
 
         [Required]
         [MaxLength(CuisineDescriptionMaxLenght)]

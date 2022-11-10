@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CookingTrickery.Core.Models
+namespace CookingTrickery.Core.Models.Ingredients
 {
-    public class RecipePreviewViewModel
+    public class IngredientByTypeViewModel
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; } = null!;
 
-        public string QuickDescription { get; set; } = null!;
-
         public string ImageUrl { get; set; } = null!;
 
-        public string? Cuisine { get; set; }
+        public string Type { get; set; } = null!;
 
-        public string User { get; set; } = null!;
     }
 }

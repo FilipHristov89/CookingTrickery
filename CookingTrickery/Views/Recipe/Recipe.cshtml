@@ -14,13 +14,10 @@
                 <span>Ingredients</span>
             </h4>
             <ul class="ingredients">
-                <li class="ingredient"> 300 g papardele</li>
-                <li class="ingredient"> 400 ml heavy cream</li>
-                <li class="ingredient"> 500 g smoked bacon</li>
-                <li class="ingredient"> 1 onion</li>
-                <li class="ingredient"> 3 cloves garlic</li>
-                <li class="ingredient"> 1 tbs olive oil </li>
-                <li class="ingredient"> 1 pinch salt </li>
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    <li class="ingredient">@ingredient.Quantity @ingredient.Measurement @ingredient.Ingredient</li>
+                }
             </ul>
         </div>
         <div class="time-portions">

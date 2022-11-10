@@ -16,6 +16,9 @@
         public string Name { get; set; } = null!;
 
         [Required]
+        public string ImageUrl { get; set; } = null!;
+
+        [Required]
         [MaxLength(IngredientTypeMaxLenght)]
         public IngredientTypeEnum Type { get; set; }
 
