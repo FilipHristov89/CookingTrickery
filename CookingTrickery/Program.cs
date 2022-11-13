@@ -1,9 +1,10 @@
 using CookingTrickery.Core.ModelBinders;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using CookingTrickery.Data;
+
+using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.ControllerConstants;
+using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.UserControllerMethodConstants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,11 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Lockout.MaxFailedAccessAttempts = builder.Configuration.GetValue<int>("Identity:MaxFailedAccessAttempts");
     //options.ClaimsIdentity.RoleClaimType
 }).AddEntityFrameworkStores<CookingTrickeryDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/{UserControllerValue}/{LoginMethod}";
+});
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>

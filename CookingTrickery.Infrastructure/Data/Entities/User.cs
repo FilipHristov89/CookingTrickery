@@ -1,18 +1,16 @@
-﻿using CookingTrickery.Infrastructure.Data.Entities;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata.Ecma335;
 using static CookingTrickery.Infrastructure.Data.Common.Constants.UserConstants;
 
 namespace CookingTrickery.Infrastructure.Data.Entities
 {
     public class User : IdentityUser
     {      
-        [MaxLength(UserFirstNameMaxLenght)]
+        [MaxLength(UserFirstNameMaxLength)]
         public string FirstName { get; set; } = null!;
 
-        [MaxLength(UserLastNameMaxLenght)]
+        [MaxLength(UserLastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
         public Guid? FavoriteCuisineId { get; set; }

@@ -11,14 +11,14 @@
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(CuisineNameMaxLenght)]
+        [MaxLength(CuisineNameMaxLength)]
         public string Name { get; set; } = null!;
         
         [Required]
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        [MaxLength(CuisineDescriptionMaxLenght)]
+        [MaxLength(CuisineDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         public ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();

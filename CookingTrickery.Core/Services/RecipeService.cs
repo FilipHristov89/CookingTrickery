@@ -3,7 +3,6 @@ using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace CookingTrickery.Core.Services
 {
@@ -14,6 +13,11 @@ namespace CookingTrickery.Core.Services
         public RecipeService(CookingTrickeryDbContext _context)
         {
             context = _context;
+        }
+
+        public Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel item)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
@@ -34,6 +38,11 @@ namespace CookingTrickery.Core.Services
                     Cuisine = r?.Cuisine?.Name,
                     User = r.User.UserName
                 });
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetIngredientsAsync()
+        {
+            return await context.Ingredients.ToListAsync();
         }
 
         public async Task<RecipeViewModel> GetRecipeAsync(Guid id)
@@ -69,16 +78,5 @@ namespace CookingTrickery.Core.Services
             return entity;
         }
 
-        //private async Task<ICollection<RecipeIngredientModel>> GetRecipeIngredientsAsync(Guid id)
-        //{
-        //    var ingredients = await context
-        //        .Recipes
-        //        .Where(r => r.Id == id)
-        //        .Include(r => r.Ingredients)
-        //        .ToListAsync()
-
-        //        .Select(r => r.Ingredients)
-                
-        //}
     }
 }

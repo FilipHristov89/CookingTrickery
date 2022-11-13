@@ -1,4 +1,5 @@
 ﻿using CookingTrickery.Core.Models.Recipe;
+using CookingTrickery.Infrastructure.Data.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,5 +14,9 @@ namespace CookingTrickery.Core.Contracts
         Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync();
 
         Task<RecipeViewModel> GetRecipeAsync(Guid id);
+
+        Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel item);
+
+        Task<IEnumerable<Ingredient>> GetIngredientsAsync();
     }
 }

@@ -1,0 +1,65 @@
+﻿@model CreateRecipeViewModel
+
+@{
+    ViewBag.Title = "Create Recipe";
+}
+
+<h1> Create Recipe</h1>
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.QuickDescription" class="form-label">QuickDescription</label>
+                <input asp-for="@Model.QuickDescription" class="form-control" aria-required="true" />
+                <span asp-validation-for="QuickDescription" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ImageUrl" class="form-label">ImageUrl</label>
+                <input asp-for="@Model.ImageUrl" class="form-control" aria-required="true" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <h5>Ingredients</h5>
+            <div class="mb-3">
+                <div class="mb-5">
+                    <label asp-for="@Model.IngredientId" class="form-label">Name</label>
+                    <select asp-for="@Model.IngredientId" class="form-control" aria-required="true">
+                        @foreach (var ingredient in Model.Ingredients)
+                        {
+                            <option value="@ingredient.Id">@ingredient.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label asp-for="@Model.Quantity" class="form-label">Quantity</label>
+                    <input asp-for="@Model.Quantity" class="form-control" aria-required="true" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="mb-5">
+                    <label asp-for="@Model.Measurement" class="form-label">Measurement</label>
+                    <select asp-for="@Model.Measurement" class="form-control" aria-required="true">
+                    @{
+                        var options = Html.GetEnumSelectList<MeasurementTypeEnum>();
+                        @foreach (var option in options)
+                        {
+                            <option value="option">@option.Text</option>
+                        }
+                    }
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.NumberOfServings" class="form-label">Quantity</label>
+                <input asp-for="@Model.NumberOfServings" class="form-control" aria-required="true" />
+                <span asp-validation-for="NumberOfServings" class="text-danger"></span>
+            </div>
+            @*<div class="mb-3">
+                <
+            </div>*@
+        </form>
+    </div>
+</div>

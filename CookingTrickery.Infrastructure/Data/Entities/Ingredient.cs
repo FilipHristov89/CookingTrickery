@@ -12,25 +12,24 @@
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(IngredientNameMaxLenght)]
+        [MaxLength(IngredientNameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        [MaxLength(IngredientTypeMaxLenght)]
         public IngredientTypeEnum Type { get; set; }
 
         [Required]
         public int Calories { get; set; }
 
         [Required]
-        [MaxLength(IngredientDescriptionMaxLenght)]
+        [MaxLength(IngredientDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         [Required]
-        [MaxLength(IngredientOriginMaxLenght)]
+        [MaxLength(IngredientOriginMaxLength)]
         public string Origin { get; set; } = null!;
 
         public ICollection<IngredientMeasurement> IngredientsMeasurements { get; set; } = new List<IngredientMeasurement>();

@@ -1,7 +1,8 @@
-﻿using CookingTrickery.Infrastructure.Data.Entities;
+﻿using CookingTrickery.Infrastructure.Data.Common;
+using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using static CookingTrickery.Infrastructure.Data.Common.IngredientTypeEnum;
 
 namespace CookingTrickery.Infrastructure.Data.Configuration
@@ -10,8 +11,19 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
+            //IngredientTypeConversion(builder);
             builder.HasData(IngredientSeed());
         }
+
+        //private void IngredientTypeConversion(EntityTypeBuilder<Ingredient> builder)
+        //{
+        //    builder
+        //        .Property(i => i.Type)
+        //        .HasConversion(
+        //            t => t.ToString(),
+        //            t => (IngredientTypeEnum)Enum.Parse(typeof(IngredientTypeEnum), t)
+        //            );
+        //}
 
         private List<Ingredient> IngredientSeed()
         {

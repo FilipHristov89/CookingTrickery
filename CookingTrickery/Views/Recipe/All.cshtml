@@ -12,13 +12,15 @@
         <div class="recent">
             @foreach (var recipe in Model)
             {
-                <div class="recent-recipe">
-                    <img src="@recipe.ImageUrl">
-                    <p class="recipe-title">@recipe.Name</p>
-                    <p class="recipe-quickdesc">Description: @recipe.QuickDescription</p>
-                    <p class="recipe-cuisine">Cuisine: @recipe.Cuisine</p>
-                    <p class="recipe-user">Created by: @recipe.User</p>
-                </div>
+                <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
+                    <div class="recent-recipe">
+                        <img src="@recipe.ImageUrl">
+                        <p class="recipe-title">@recipe.Name</p>
+                        <p class="recipe-quickdesc">Description: @recipe.QuickDescription</p>
+                        <p class="recipe-cuisine">Cuisine: @recipe.Cuisine</p>
+                        <p class="recipe-user">Created by: @recipe.User</p>
+                    </div>
+                </a>
             }
         </div>
     </div>

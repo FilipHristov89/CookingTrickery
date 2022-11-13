@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CookingTrickery.Core.Models.Recipe
+﻿namespace CookingTrickery.Core.Models.Recipe
 {
     public class RecipeIngredientModel
     {

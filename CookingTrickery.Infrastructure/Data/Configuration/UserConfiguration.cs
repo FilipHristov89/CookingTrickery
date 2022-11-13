@@ -38,9 +38,9 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
 
             builder
                .Property(u => u.Email)
-               .HasMaxLength(UserEmailMaxLenght)
+               .HasMaxLength(UserEmailMaxLength)
                .IsRequired();
-
+            
         }
 
         private List<User> UserSeed()

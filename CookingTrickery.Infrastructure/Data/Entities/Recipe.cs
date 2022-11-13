@@ -1,9 +1,10 @@
-﻿namespace CookingTrickery.Infrastructure.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using static CookingTrickery.Infrastructure.Data.Common.Constants.RecipeConstants;
+
+namespace CookingTrickery.Infrastructure.Data.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Reflection.Metadata;
-    using static Data.Common.Constants.RecipeConstants;
+    
     public class Recipe
     {
         [Key]
@@ -11,11 +12,11 @@
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(RecipeNameMaxLenght)]
+        [MaxLength(RecipeNameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(RecipeQuickDecriptionMaxLenght)]
+        [MaxLength(RecipeQuickDescriptionMaxLength)]
         public string QuickDescription { get; set; } = null!;
         
         [Required]
@@ -28,7 +29,7 @@
         public Cuisine? Cuisine { get; set; }
 
         [Required]
-        [MaxLength(RecipeDescriptionMaxLenght)]
+        [MaxLength(RecipeDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         public int NumberOfServing { get; set; }

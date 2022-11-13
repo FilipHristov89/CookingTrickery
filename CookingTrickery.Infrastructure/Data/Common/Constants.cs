@@ -4,50 +4,58 @@
     {
         public static class RecipeConstants
         {
-            public const int RecipeNameMaxLenght = 70;
+            public const int RecipeNameMaxLength = 70;
+            public const int RecipeNameMinLength = 3;
 
-            public const int RecipeQuickDecriptionMaxLenght = 300;
+            public const int RecipeQuickDescriptionMaxLength = 300;
+            public const int RecipeQuickDescriptionMinLenght = 4;
 
-            public const int RecipeDescriptionMaxLenght = 4000;
+            public const int RecipeDescriptionMaxLength = 4000;
+            public const int RecipeDescriptionMinLength = 10;
 
             public const int RecipePrepTimeMaxLength = 30;
         }
 
         public static class IngredientConstants
         {
-            public const int IngredientNameMaxLenght = 50;
+            public const int IngredientNameMaxLength = 50;
+            public const int IngredientNameMinLength = 3;
 
-            public const int IngredientTypeMaxLenght = 30;
+            public const int IngredientDescriptionMaxLength = 1000;
+            public const int IngredientDescriptionMinLength = 20;
 
-            public const int IngredientDescriptionMaxLenght = 1000;
-
-            public const int IngredientOriginMaxLenght = 20;
+            public const int IngredientOriginMaxLength = 20;
+            public const int IngredientOriginMinLength = 4;
         }
 
         public static class CuisineConstants
         {
-            public const int CuisineNameMaxLenght = 60;
+            public const int CuisineNameMaxLength = 60;
 
-            public const int CuisineDescriptionMaxLenght = 800;
+            public const int CuisineDescriptionMaxLength = 800;
         }
 
         public static class MeasurementConstants
         {
-            public const int MeasurementTypeMaxLenght = 10;
+            public const int MeasurementTypeMaxLength = 10;
         }
 
         public static class UserConstants
         {
-            public const int UserUserNameMaxLength = 50;
+            public const int UserUserNameMaxLength = 20;
+            public const int UserUserNameMinLength = 3;
 
-            public const int UserEmailMaxLenght = 254;
-            public const int UserEmailMinLenght = 12;
+            public const int UserEmailMaxLength = 254;
+            public const int UserEmailMinLength = 12;
 
-            public const int UserFirstNameMaxLenght = 20;
-            public const int UserLastNameMaxLenght = 50;
+            public const int UserFirstNameMaxLength = 20;
+            public const int UserFirstNameMinLength = 2;
 
-            public const int UserPasswordMaxLenght = 32;
-            public const int UserPasswordMinLenght = 6;
+            public const int UserLastNameMaxLength = 50;
+            public const int UserLastNameMinLength = 2;
+
+            public const int UserPasswordMaxLength = 32;
+            public const int UserPasswordMinLength = 6;
             
         }
     }
