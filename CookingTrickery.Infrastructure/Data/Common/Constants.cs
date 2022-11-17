@@ -31,8 +31,10 @@
         public static class CuisineConstants
         {
             public const int CuisineNameMaxLength = 60;
+            public const int CuisineNmaeMinLenght = 9;
 
             public const int CuisineDescriptionMaxLength = 800;
+            public const int CuisineDescriptionMinLenght = 10;
         }
 
         public static class MeasurementConstants

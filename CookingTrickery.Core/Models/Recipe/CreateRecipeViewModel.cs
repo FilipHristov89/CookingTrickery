@@ -3,6 +3,7 @@ using CookingTrickery.Infrastructure.Data.Entities;
 using System.ComponentModel.DataAnnotations;
 
 using static CookingTrickery.Infrastructure.Data.Common.Constants.RecipeConstants;
+
 namespace CookingTrickery.Core.Models.Recipe
 {
     public class CreateRecipeViewModel
@@ -29,6 +30,10 @@ namespace CookingTrickery.Core.Models.Recipe
         [Required]
         [StringLength(RecipeDescriptionMaxLength, MinimumLength = RecipeDescriptionMinLength)]
         public string Description { get; set; } = null!;
+        
+        public Guid CuisineId { get; set; }
+        public Cuisine Cuisine { get; set; }
+
 
         [Required]
         public int NumberOfServings { get; set; }

@@ -7,7 +7,7 @@
        Oil = 3,
        Sause = 4,
        Fish = 5,
-       Eggs = 6,
+       Egg = 6,
        Milk = 7,
        Cheese = 8,
        Cream = 9,
@@ -27,6 +27,6 @@
        Rice = 23,
        Honey = 24,
        Paste = 25,
-       Water = 26
+       Liquid = 26
     }
 }

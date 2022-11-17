@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CuisinePreviewViewModel>
+@{
+    ViewBag.Title = "Cuisines";
+}
+
+<h1>Cuisines</h1>
+<div>
+    <div class="wrap">
+        <div>
+            @foreach (var cuisine in Model)
+            {
+                <a class="cusine-link" asp-controller="Cuisine" asp-action="Cuisine" asp-route-id = "@cuisine.Id">
+                    <div class="cuisine-info">
+                        <img src="@cuisine.ImageUrl">
+                        <p>@cuisine.Name</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

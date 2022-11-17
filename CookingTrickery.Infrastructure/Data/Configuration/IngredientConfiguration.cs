@@ -174,10 +174,173 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
                     Id = new Guid("52a20631-47f3-45c7-a1fe-a41802908375"),
                     Name = "Fresh Parsley",
                     ImageUrl = "https://cdn.shopify.com/s/files/1/0458/5780/0360/products/eumundi-farm-fresh-parsley_720x.jpg?v=1647373473",
-                    Type = Vegitable,
+                    Type = Herb,
                     Calories = 5,
                     Description = "Parsley, or garden parsley (Petroselinum crispum) is a species of flowering plant in the family Apiaceae that is native to the central and eastern Mediterranean region ",
                     Origin = "Mediterranean region"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Orange",
+                    ImageUrl = "https://www.santosfood.com/wp-content/uploads/2020/01/img-7.jpg?1742x1295",
+                    Type = Fruit,
+                    Calories = 47,
+                    Description = "An orange is a fruit of various citrus species in the family Rutaceae it primarily refers to Citrus × sinensis, which is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange.",
+                    Origin = "China"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Salmon",
+                    ImageUrl = "https://img.freepik.com/free-photo/raw-salmon-meat_74190-1592.jpg?w=1380&t=st=1668534014~exp=1668534614~hmac=e1cb4b7b026444b95a5c0c5f9ec2f456568e1d925029a11b6792b9481562f92f",
+                    Type = Fish,
+                    Description = "Salmon is the common name for several commercially important species of euryhaline ray-finned fish from the family Salmonidae, which are native to tributaries of the North Atlantic (genus Salmo) and North Pacific basin. Other closely related fish in the same family include trout, char, grayling, whitefish, lenok and taimen.",
+                    Origin = "Ocean"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Egg",
+                    ImageUrl = "https://i.guim.co.uk/img/media/db9a96e1251a41a215ada849407983cedadc2fbb/0_252_2574_1545/master/2574.jpg?width=620&quality=85&dpr=1&s=none",
+                    Type = Egg,
+                    Description = "An egg is an organic vessel grown by an animal to carry a possibly fertilized egg cell (a zygote) and to incubate from it an embryo within the egg until the embryo has become an animal fetus that can survive on its own, at which point the animal hatches.",
+                    Origin = "All over the world"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Milk",
+                    ImageUrl = "https://solidstarts.com/wp-content/uploads/Milk-for-Babies-480x320.webp",
+                    Type = Milk,
+                    Description = "Milk is a white liquid food produced by the mammary glands of mammals. It is the primary source of nutrition for young mammals (including breastfed human infants) before they are able to digest solid food Immune factors and immune-modulating components in milk contribute to milk immunity.",
+                    Origin = "All over the world"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Parmesan",
+                    ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
+                    Type = Cheese,
+                    Description = "Parmesan (Italian: Parmigiano Reggiano; Italian pronunciation: [parmiˈdʒaːno redˈdʒaːno]) is an Italian hard, granular cheese produced from cows’ milk and aged at least 12 months.",
+                    Origin = "Italy"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Cream fresh",
+                    ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
+                    Type = Cream,
+                    Description = "Cream fresh is a dairy product, a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture.",
+                    Origin = "France"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Cream fresh",
+                    ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
+                    Type = Cream,
+                    Description = "Cream fresh is a dairy product, a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture.",
+                    Origin = "France"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Merguez",
+                    ImageUrl = "https://thegourmetgoatfarmer.co.uk/wp-content/uploads/2021/01/Merguez-Sausages-600x461.jpg",
+                    Type = Sausage,
+                    Description = "Merguez s a red, spicy mutton- or beef-based fresh sausage in Maghrebi cuisine.[1][2] Since the late 20th century, it has been popular in France and Great Britain due to the large Algerian populations",
+                    Origin = "Africa"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Linguine",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/da/Linguine.jpg",
+                    Type = Pasta,
+                    Description = "Linguine sometimes anglicized as linguini is a type of pasta similar to fettuccine and trenette but elliptical in section rather than flat.",
+                    Origin = "Italy"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Squid Ink",
+                    ImageUrl = "https://chgojohn.files.wordpress.com/2015/12/squid-ink.jpg",
+                    Type = Food_coloring,
+                    Description = "Squid Ink is a dark-coloured or luminous ink released into water by most species of cephalopod, usually as an escape mechanism. Modern use of cephalopod ink is generally limited to cooking, primarily in Japan and the Mediterranean, where it is used as a food colouring and flavouring, for example in pasta and sauces, and calamares en su tinta.",
+                    Origin = "Ocean"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Butter",
+                    ImageUrl = "https://media.npr.org/assets/img/2017/02/23/butter1_custom-340e5902a868b66b8f11aca60a5b2eed334971eb-s800-c85.webp",
+                    Type = Fat,
+                    Description = "Squid Ink is a dark-coloured or luminous ink released into water by most species of cephalopod, usually as an escape mechanism. Modern use of cephalopod ink is generally limited to cooking, primarily in Japan and the Mediterranean, where it is used as a food colouring and flavouring, for example in pasta and sauces, and calamares en su tinta.",
+                    Origin = "All over the world"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Pistacio",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Pistachio_macro_whitebackground_NS.jpg/220px-Pistachio_macro_whitebackground_NS.jpg",
+                    Type = Nut,
+                    Description = "The pistachio a member of the cashew family, is a small tree originating from Central Asia and the Middle East. The tree produces seeds that are widely consumed as food.",
+                    Origin = "Middle East"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Multigrain Loaf",
+                    ImageUrl = "https://www.seasonsandsuppers.ca/wp-content/uploads/2021/09/multigrain-bread-1200-600x600.jpg",
+                    Type = Bread,
+                    Description = "Multigrain bread is made with different types of flour and Theobroma’s multigrain loaf offers you the goodness of 8 different types of flour. This includes jowar, ragi, soya, oats and whole wheat flour.",
+                    Origin = "All over the world"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Cognac",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Cognac_glass_-_tulip_shaped.JPG/800px-Cognac_glass_-_tulip_shaped.JPG",
+                    Type = Alcohol,
+                    Description = "Cognac is a variety of brandy named after the commune of Cognac, France. It is produced in the surrounding wine-growing region in the departments of Charente and Charente-Maritime.Cognac production falls under French appellation d'origine contrôlée designation, with production methods and naming required to meet certain legal requirements. Among the specified grapes, Ugni blanc, known locally as Saint-Émilion, is most widely used.",
+                    Origin = "France"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Peas",
+                    ImageUrl = "https://www.almanac.com/sites/default/files/styles/max_1300x1300/public/image_nodes/peas-and-pea-pods.jpg?itok=qWmqcepy",
+                    Type = Pulses,
+                    Description = "Peas are annual plants, with a life cycle of one year. They are a cool-season crop grown in many parts of the world, planting can take place from winter to early summer depending on location. The average pea weighs between 0.1 and 0.36 gram.The immature peas (and in snow peas the tender pod as well) are used as a vegetable, fresh, frozen or canned, varieties of the species typically called field peas are grown to produce dry peas like the split pea shelled from a matured pod.",
+                    Origin = "Mediterranean region"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Arborio rice",
+                    ImageUrl = "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_487/k%2FPhoto%2FSeries%2F2021-03-rice-o-pedia%2FArborio-Rice%2F2021-03-30_ATK-48176-Rice-Arborio",
+                    Type = Rice,
+                    Description = "rborio rice is an Italian short-grain rice. It is named after the town of Arborio, in the Po Valley, which is situated in the region of Piedmont in Italy. When cooked, the rounded grains are firm, and creamy and chewy compared to other varieties of rice, due to their higher amylopectin starch content It has a starchy taste and blends well with other flavours.",
+                    Origin = "Italy"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Honey",
+                    ImageUrl = "https://5.imimg.com/data5/YH/RH/MY-43324479/natural-honey-1000x1000.jpg",
+                    Type = Honey,
+                    Description = "Honey is a sweet and viscous substance made by several bees, the best-known of which are honey bees.Honey is made and stored to nourish bee colonies. Bees produce honey by gathering and then refining the sugary secretions of plants (primarily floral nectar) or the secretions of other insects, like the honeydew of aphids.",
+                    Origin = "All over the world"
+                },
+                new Ingredient()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Water",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Water_drop_001.jpg/1920px-Water_drop_001.jpg",
+                    Type = Liquid,
+                    Description = "Water is an inorganic, transparent, tasteless, odorless, and nearly colorless chemical substance, which is the main constituent of Earth's hydrosphere and the fluids of all known living organisms. It is vital for all known forms of life, despite providing neither food, energy, nor organic micronutrients",
+                    Origin = "All over the world"
                 },
             };
 

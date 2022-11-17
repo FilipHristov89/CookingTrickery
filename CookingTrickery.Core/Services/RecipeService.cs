@@ -15,7 +15,7 @@ namespace CookingTrickery.Core.Services
             context = _context;
         }
 
-        public Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel item)
+        public Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel model)
         {
             throw new NotImplementedException();
         }

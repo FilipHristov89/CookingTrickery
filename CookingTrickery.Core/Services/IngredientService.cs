@@ -55,7 +55,7 @@ namespace CookingTrickery.Core.Services
 
         public async Task<IEnumerable<IngredientByTypeViewModel>> GetIngredientsByTypeAsync(int ingredientType)
         {
-            IngredientTypeEnum neededType = (IngredientTypeEnum)((int)ingredientType);
+            IngredientTypeEnum neededType = (IngredientTypeEnum)ingredientType;
             
             var ingredients = await context
                 .Ingredients
@@ -70,6 +70,11 @@ namespace CookingTrickery.Core.Services
                 .ToListAsync();
 
             return ingredients;
+        }
+
+        public async Task<IEnumerable<IngredientTypeViewModel>> GetTypesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
