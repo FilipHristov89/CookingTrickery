@@ -1,6 +1,7 @@
 using CookingTrickery.Core.ModelBinders;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.ControllerConstants;
@@ -20,10 +21,9 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedPhoneNumber");
     options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
     options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:RequiredLength");
-
     options.Lockout.MaxFailedAccessAttempts = builder.Configuration.GetValue<int>("Identity:MaxFailedAccessAttempts");
-    //options.ClaimsIdentity.RoleClaimType
-}).AddEntityFrameworkStores<CookingTrickeryDbContext>();
+}).AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<CookingTrickeryDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

@@ -1,6 +1,7 @@
 ﻿using CookingTrickery.Core.Contracts;
-using CookingTrickery.Core.Models.Cuisine;
+using CookingTrickery.Core.Models.Cuisines;
 using CookingTrickery.Infrastructure.Data;
+using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +9,11 @@ namespace CookingTrickery.Core.Services
 {
     public class CuisineService : ICuisineService
     {
-        private readonly CookingTrickeryDbContext context;
+        private readonly IRepository repo;
 
-        public CuisineService(CookingTrickeryDbContext _context)
+        public CuisineService(IRepository _repo)
         {
-            context = _context;
+            repo = _repo;
         }
 
         public async Task CreateCuisine(CreateCuisineViewModel model)
@@ -25,14 +26,13 @@ namespace CookingTrickery.Core.Services
                 Description = model.Description
             };
 
-            await context.Cuisines.AddAsync(cuisine);
-            await context.SaveChangesAsync();
+            await repo.AddAsync(cuisine);
+            await repo.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<CuisinePreviewViewModel>> GetAllCuisinesAsync()
         {
-            var cuisines = await context
-                .Cuisines
+            var cuisines = await repo.AllReadonly<Cuisine>()
                 .Select(c => new CuisinePreviewViewModel
                 {
                     Id = c.Id,
@@ -46,8 +46,7 @@ namespace CookingTrickery.Core.Services
 
         public async Task<CuisineViewModel> GetCuisineAsync(Guid id)
         {
-            var cuisine = await context
-                .Cuisines
+            var cuisine = await repo.AllReadonly<Cuisine>()
                 .Where(c => c.Id == id)
                 .Select(c => new CuisineViewModel()
                 {

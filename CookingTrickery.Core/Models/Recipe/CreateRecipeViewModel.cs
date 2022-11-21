@@ -32,7 +32,7 @@ namespace CookingTrickery.Core.Models.Recipe
         public string Description { get; set; } = null!;
         
         public Guid CuisineId { get; set; }
-        public Cuisine Cuisine { get; set; }
+        public IEnumerable<Cuisine> Cuisines { get; set; } = new List<Cuisine>();
 
 
         [Required]

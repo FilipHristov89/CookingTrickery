@@ -1,6 +1,6 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Recipe;
-using CookingTrickery.Infrastructure.Data;
+using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +8,11 @@ namespace CookingTrickery.Core.Services
 {
     public class RecipeService : IRecipeService
     {
-        private readonly CookingTrickeryDbContext context;
+        private readonly IRepository repo;
 
-        public RecipeService(CookingTrickeryDbContext _context)
+        public RecipeService(IRepository _repo)
         {
-            context = _context;
+            repo = _repo;
         }
 
         public Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel model)
@@ -22,8 +22,7 @@ namespace CookingTrickery.Core.Services
 
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
         {
-            var entities = await context
-                .Recipes
+            var entities = await repo.AllReadonly<Recipe>()
                 .Include(r => r.Cuisine)
                 .Include(r => r.User)
                 .ToListAsync();
@@ -40,15 +39,19 @@ namespace CookingTrickery.Core.Services
                 });
         }
 
+        public async Task<IEnumerable<Cuisine>> GetCuisinesAsync()
+        {
+            return await repo.AllReadonly<Cuisine>().ToListAsync();
+        }
+
         public async Task<IEnumerable<Ingredient>> GetIngredientsAsync()
         {
-            return await context.Ingredients.ToListAsync();
+            return await repo.AllReadonly<Ingredient>().ToListAsync();
         }
 
         public async Task<RecipeViewModel> GetRecipeAsync(Guid id)
         {
-            var entity = await context
-                .Recipes
+            var entity = await repo.AllReadonly<Recipe>()
                 .Where(r => r.Id == id)
                 .Include(r => r.Cuisine)
                 .Include(r => r.User)
@@ -78,5 +81,22 @@ namespace CookingTrickery.Core.Services
             return entity;
         }
 
+        public async Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId)
+        {
+            var recipes = await repo.AllReadonly<Recipe>()
+                .Where(r => r.UserId == userId)
+                .Select(r => new UserRecipesViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    ImageUrl = r.ImageUrl,
+                    QuickDescription = r.QuickDescription,
+                    CuisineId = r.CuisineId,
+                    Cuisine = r.Cuisine.Name
+                })
+                .ToListAsync();
+
+            return recipes;
+        }
     }
 }

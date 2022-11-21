@@ -1,10 +1,11 @@
 ﻿using CookingTrickery.Core.Contracts;
-using CookingTrickery.Core.Models.Cuisine;
+using CookingTrickery.Core.Models.Cuisines;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CookingTrickery.Controllers
 {
+    [Authorize]
     public class CuisineController : Controller
     {
         private ICuisineService cuisineService;
@@ -13,14 +14,14 @@ namespace CookingTrickery.Controllers
         {
             cuisineService = _cuisineService;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Cuisines()
         {
             var model = await cuisineService.GetAllCuisinesAsync();
 
             return View(model);
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Cuisine(Guid id)
         {
             var model = await cuisineService.GetCuisineAsync(id);

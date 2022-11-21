@@ -2,6 +2,7 @@
 using CookingTrickery.Core.Models.Ingredients;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Common;
+using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +10,11 @@ namespace CookingTrickery.Core.Services
 {
     public class IngredientService : IIngredientService
     {
-        private readonly CookingTrickeryDbContext context;
+        private readonly IRepository repo;
 
-        public IngredientService(CookingTrickeryDbContext _context)
+        public IngredientService(IRepository _repo)
         {
-            context = _context;
+            repo = _repo;
         }
 
         public async Task CreateIngredientAsync(CreateIngredientViewModel model)
@@ -29,14 +30,13 @@ namespace CookingTrickery.Core.Services
                 Origin = model.Origin
             };
 
-            await context.Ingredients.AddAsync(ingredient);
-            await context.SaveChangesAsync();
+            await repo.AddAsync(ingredient);
+            await repo.SaveChangesAsync();
         }
 
         public async Task<IngredientViewModel> GetIngredientAsync(Guid id)
         {
-            var ingredient = await context
-                .Ingredients
+            var ingredient = await repo.AllReadonly<Ingredient>()
                 .Where(i => i.Id == id)
                 .Select(i => new IngredientViewModel()
                 {
@@ -48,7 +48,7 @@ namespace CookingTrickery.Core.Services
                     Origin = i.Origin,
                     Description = i.Description
                 })
-                .FirstOrDefaultAsync();
+                .FirstAsync();
 
             return ingredient;
         }
@@ -57,8 +57,7 @@ namespace CookingTrickery.Core.Services
         {
             IngredientTypeEnum neededType = (IngredientTypeEnum)ingredientType;
             
-            var ingredients = await context
-                .Ingredients
+            var ingredients = await repo.AllReadonly<Ingredient>()
                 .Where(i => i.Type == neededType)
                 .Select(i => new IngredientByTypeViewModel()
                 {

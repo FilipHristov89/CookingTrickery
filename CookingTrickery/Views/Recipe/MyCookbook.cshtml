@@ -1,0 +1,39 @@
+﻿@model IEnumerable<UserRecipesViewModel>
+
+@{
+    ViewBag.Title = "My Cookbook";
+}
+
+<div>
+    <div>
+        <div>
+            @if (Model.Count() == 0)
+            {
+                <p>No Recipes Yet</p>
+                <p>You want to create your own recipe? Click the button and start cooking!</p>
+                <a asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
+                    <input type="button" value="Create Recipe"/>
+                </a>
+            }
+            else 
+            {
+                @foreach (var recipe in Model)
+                {
+                    <div>
+                        <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
+                            <div>
+                                <img src="@recipe.ImageUrl">
+                            </div>
+                            <div>
+                                <p>@recipe.Name</p>
+                                <p>@recipe.QuickDescription</p>
+                                <a asp-area="" asp-controller="Cuisine" asp-action="Cuisine" asp-route-id="@recipe.CuisineId">@recipe.Cuisine</a>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-﻿using CookingTrickery.Core.Models.Cuisine;
+﻿using CookingTrickery.Core.Models.Cuisines;
 
 namespace CookingTrickery.Core.Contracts
 {

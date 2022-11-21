@@ -1,10 +1,12 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Ingredients;
 using CookingTrickery.Core.Models.Recipe;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CookingTrickery.Controllers
 {
+    [Authorize]
     public class IngredientController : Controller
     {
         private IIngredientService ingredientService;
@@ -13,12 +15,12 @@ namespace CookingTrickery.Controllers
         {
             ingredientService = _service;
         }
-
+        [AllowAnonymous]
         public IActionResult All()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Ingredient(Guid id)
         {
             var model = await ingredientService.GetIngredientAsync(id);
