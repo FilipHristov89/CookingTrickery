@@ -2,6 +2,7 @@
 {
     public enum IngredientTypeEnum
     {
+       None = 0,
        Vegitable = 1,
        Meat = 2,
        Oil = 3,

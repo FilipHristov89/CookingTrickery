@@ -1,0 +1,66 @@
+﻿@model AllIngredientsQueryModel
+
+@{
+    ViewBag.Title = "All Ingredients";
+}
+
+<h3>All Ingredients</h3></>
+<div>
+    <form method="get">
+        <div>
+            <div>
+                <label asp-for="IngredientName"></label>
+                <input asp-for="IngredientName" class="form-control" placeholder="...">
+            </div>
+            <div>
+                <label asp-for="IngredientOrigin"></label>
+                <input asp-for="IngredientOrigin" class="form-control" placeholder="..."/>
+            </div>
+            <div>
+                <label asp-for="IngredientType"></label>
+                <select asp-for="IngredientType" class="form-control">
+                    @{
+                        var typeOptions = Html.GetEnumSelectList<IngredientTypeEnum>();
+                        foreach (var option in typeOptions)
+                        {
+                            <option value="@option.Value">@option.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    @{
+                        var sortingOptions = Html.GetEnumSelectList<IngredientSorting>();
+                        foreach (var option in sortingOptions)
+                        {
+                            <option value="@option.Value">@option.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Search" class="btn btn-primary"
+            </div>
+        </div>
+    </form>
+    @{
+        var disableButton = !Model.Ingredients.Any();
+    }
+</div>
+@{
+    if (Model.Ingredients.Any())
+    {
+        <p>No ingredients found</p>
+    }
+}
+<div>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <partial name="_IngredientPreviewPartial" model="@ingredient" />
+    }
+</div>
+<div>
+    <p>@Model.TotalIngredientsCount ingredients found!</p>
+</div>

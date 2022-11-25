@@ -28,13 +28,6 @@ namespace CookingTrickery.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> IngredientsByType(int ingredientType)
-        {
-            var model = await ingredientService.GetIngredientsByTypeAsync(ingredientType);
-
-            return View(model);
-        }
-
         [HttpGet]
         public IActionResult CreateIngredient()
         {
@@ -63,6 +56,22 @@ namespace CookingTrickery.Controllers
                 return View(model);
             }
 
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> AllIngredients([FromQuery]AllIngredientsQueryModel queryModel)
+        {
+            var ingredients = await ingredientService.AllIngredientsAsync(
+                queryModel.IngredientName,
+                queryModel.IngredientOrigin,
+                queryModel.IngredientType,
+                queryModel.Sorting
+                );
+            queryModel.TotalIngredientsCount = ingredients.TotalIngredientsCount;
+            queryModel.Ingredients = ingredients.Ingredients;
+
+            return View(queryModel);
         }
     }
 }

@@ -34,6 +34,59 @@ namespace CookingTrickery.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public async Task<IngredientQueryModel> AllIngredientsAsync(string? ingredientName = null, string? ingredientOrigin = null, IngredientTypeEnum ingredientType = IngredientTypeEnum.None, IngredientSorting sorting = IngredientSorting.Alphabetically)
+        {
+            var result = new IngredientQueryModel();
+            var ingredients = repo.AllReadonly<Ingredient>();
+
+            if (string.IsNullOrEmpty(ingredientName) == false)
+            {
+                ingredientName = $"%{ingredientName.ToLower()}%";
+                ingredients = ingredients
+                    .Where(i => EF.Functions.Like(i.Name.ToLower(), ingredientName));
+            }
+
+            if (string.IsNullOrEmpty(ingredientOrigin) == false)
+            {
+                ingredientOrigin = $"%{ingredientOrigin.ToLower()}%";
+                ingredients = ingredients
+                    .Where(i => EF.Functions.Like(i.Origin.ToLower(),ingredientOrigin));
+            }
+
+            if (ingredientType != IngredientTypeEnum.None)
+            {
+                ingredients = ingredients
+                    .Where(i => i.Type == ingredientType);
+            }
+
+            ingredients = sorting switch
+            {
+                IngredientSorting.AlphabeticallyDec => ingredients
+                    .OrderByDescending(i => i.Name),
+                IngredientSorting.ByCalories => ingredients
+                    .OrderBy(i => i.Calories),
+                IngredientSorting.ByCaloriesDec => ingredients
+                    .OrderByDescending(i => i.Calories),
+                _ => ingredients.OrderBy(i => i.Name)
+            };
+
+            result.Ingredients = await ingredients
+                .Select(i => new IngredientPreviewViewModel()
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                    ImageUrl = i.ImageUrl,
+                    Type = i.Type,
+                    Origin = i.Origin,
+                    Calories = i.Calories
+                })
+                .ToListAsync();
+
+            result.TotalIngredientsCount = await ingredients.CountAsync();
+
+            return result;
+        }
+
         public async Task<IngredientViewModel> GetIngredientAsync(Guid id)
         {
             var ingredient = await repo.AllReadonly<Ingredient>()
@@ -51,29 +104,6 @@ namespace CookingTrickery.Core.Services
                 .FirstAsync();
 
             return ingredient;
-        }
-
-        public async Task<IEnumerable<IngredientByTypeViewModel>> GetIngredientsByTypeAsync(int ingredientType)
-        {
-            IngredientTypeEnum neededType = (IngredientTypeEnum)ingredientType;
-            
-            var ingredients = await repo.AllReadonly<Ingredient>()
-                .Where(i => i.Type == neededType)
-                .Select(i => new IngredientByTypeViewModel()
-                {
-                    Id = i.Id,
-                    Name = i.Name,
-                    ImageUrl = i.ImageUrl,
-                    Type = i.Type.ToString()
-                })
-                .ToListAsync();
-
-            return ingredients;
-        }
-
-        public async Task<IEnumerable<IngredientTypeViewModel>> GetTypesAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

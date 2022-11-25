@@ -1,0 +1,17 @@
+﻿@model IngredientPreviewViewModel
+
+<div>
+    <a class="ingredient-link" asp-area="" asp-controller="Ingredient" asp-action="Ingredient" asp-route-id=@Model.Id>
+        <div>
+            <div>
+                <img src="@Model.ImageUrl" />
+            </div>
+            <div>
+                <p>@Model.Name</p>
+                <p>@Model.Type</p>
+                <p>@Model.Origin</p>
+                <p>@Model.Calories</p>
+            </div>
+        </div>
+    </a>
+</div>
