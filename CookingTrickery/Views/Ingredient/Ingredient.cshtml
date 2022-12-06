@@ -26,3 +26,21 @@
         </p>
     </div>
 </div>
+
+@{
+    if (!Model.IngredientRecipe.Any())
+    {
+        <h4>No recipes found for this ingredient!</h4>
+        <p>You know a recipe with this ingredient? Click here to created it!</p>
+       <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
+            <input type="button" class="btn btn-primary" value="Create Recipe"/>
+       </a>
+    }
+}
+
+<div>
+    @foreach (var recipe in Model.IngredientRecipe)
+    {
+        <partial name="_RecipesByEntityPartial" model="@recipe" />
+    }
+</div>

@@ -1,10 +1,12 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Ingredients;
+using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Common;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CookingTrickery.Core.Services
 {
@@ -101,9 +103,26 @@ namespace CookingTrickery.Core.Services
                     Origin = i.Origin,
                     Description = i.Description
                 })
-                .FirstAsync();
+            .FirstAsync();
 
             return ingredient;
+        }
+        public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipesWithIngredient(Guid id)
+        {
+            return await repo.AllReadonly<Recipe>()
+                .Where(r => r.Ingredients.Any(i => i.IngredientId == id))
+                .OrderByDescending(r => r.CreatedOn)
+                .Select(r => new RecipePreviewViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    QuickDescription = r.QuickDescription,
+                    ImageUrl = r.ImageUrl,
+                    Cuisine = r.Cuisine.Name,
+                    User = r.User.UserName,
+                })
+                .Take(3)
+                .ToListAsync();
         }
     }
 }

@@ -25,6 +25,8 @@ namespace CookingTrickery.Controllers
         {
             var model = await ingredientService.GetIngredientAsync(id);
 
+            model.IngredientRecipe = await ingredientService.GetLastThreeRecipesWithIngredient(id);
+
             return View(model);
         }
 

@@ -1,4 +1,6 @@
-﻿namespace CookingTrickery.Core.Models.Ingredients
+﻿using CookingTrickery.Core.Models.Recipe;
+
+namespace CookingTrickery.Core.Models.Ingredients
 {
     public class IngredientViewModel
     {
@@ -15,5 +17,7 @@
         public string Origin { get; set; } = null!;
 
         public string Description { get; set; } = null!;
+
+        public IEnumerable<RecipePreviewViewModel> IngredientRecipe { get; set; } = new List<RecipePreviewViewModel>();
     }
 }

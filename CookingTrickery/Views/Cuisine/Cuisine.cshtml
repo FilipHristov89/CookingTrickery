@@ -13,15 +13,17 @@
 @{
     if (!Model.CuisineRecipe.Any())
     {
-    <h4>No recipes found for this cuisine yet!</h4>
-    <p>You know a recipe for the cuisine? Click here to created it!</p>
-    <input type="submit" asp-controller="Recipe" asp-action="CreateRecipe" value="Create Recipe" />
+        <h4>No recipes found for this cuisine yet!</h4>
+        <p>You know a recipe for the cuisine? Click here to created it!</p>
+        <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
+            <input type="button" class="btn btn-primary" value="Create Recipe" />
+        </a>
     }
 }
 
 <div>
     @foreach (var recipe in Model.CuisineRecipe)
     {
-        <partial name="_RecipesByCuisinePartial" model="@recipe" />
+        <partial name="_RecipesByEntityPartial" model="@recipe" />
     }
 </div>

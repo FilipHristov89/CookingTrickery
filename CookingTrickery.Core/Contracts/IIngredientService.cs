@@ -1,4 +1,5 @@
 ﻿using CookingTrickery.Core.Models.Ingredients;
+using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data.Common;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace CookingTrickery.Core.Contracts
         Task CreateIngredientAsync(CreateIngredientViewModel model);
 
         Task<IngredientQueryModel> AllIngredientsAsync(string? ingredientName = null, string? ingredientOrigin = null, IngredientTypeEnum ingredientType = IngredientTypeEnum.None, IngredientSorting sorting = IngredientSorting.Alphabetically);
+
+        Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipesWithIngredient(Guid id);
 
     }
 }
