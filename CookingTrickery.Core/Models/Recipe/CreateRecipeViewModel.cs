@@ -38,6 +38,8 @@ namespace CookingTrickery.Core.Models.Recipe
         [Required]
         public int NumberOfServings { get; set; }
 
-        public double? Rating { get; set; }
+        [Required]
+        public string PrepTime { get; set; } = null!;
+
     }
 }

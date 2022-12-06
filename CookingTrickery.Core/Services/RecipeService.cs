@@ -2,7 +2,9 @@
 using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Nodes;
 
 namespace CookingTrickery.Core.Services
 {
@@ -15,9 +17,25 @@ namespace CookingTrickery.Core.Services
             repo = _repo;
         }
 
-        public Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel model)
+        public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId, string recipeIngredients)
         {
-            throw new NotImplementedException();
+            var recipe = new Recipe()
+            {
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                QuickDescription = model.QuickDescription,
+                ImageUrl = model.ImageUrl,
+                Ingredients = RecipeIngredients(recipeIngredients),
+                CuisineId = model.CuisineId,
+                NumberOfServing = model.NumberOfServings,
+                PrepTime = model.PrepTime,
+                Description = model.Description,
+                CreatedOn = DateTime.Now,
+                UserId = userId
+            };
+
+            await repo.AddAsync<Recipe>(recipe);
+            await repo.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
@@ -97,6 +115,22 @@ namespace CookingTrickery.Core.Services
                 .ToListAsync();
 
             return recipes;
+        }
+
+        private ICollection<IngredientMeasurement> RecipeIngredients(string ingredientList)
+        {
+            ICollection<IngredientMeasurement> ingredients = new List<IngredientMeasurement>();
+
+            //foreach (var item in ingredientList)
+            //{
+            //    ingredientList.Add(new IngredientMeasurement()
+            //    {
+            //        Id = Guid.NewGuid(),
+            //        IngredientId = item.ingredient
+            //    })
+            //}
+
+            return ingredients;
         }
     }
 }

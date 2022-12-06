@@ -1,8 +1,11 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Extensions;
+using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using System.Text.Json.Nodes;
 
 namespace CookingTrickery.Controllers
 {
@@ -44,6 +47,18 @@ namespace CookingTrickery.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateRecipe(
+            CreateRecipeViewModel model,
+            string recipeIngredients)
+        {
+            var userId = User.Id();
+
+            await recipeService.CreateRecipeAsync(model, userId, recipeIngredients);
+
+            return RedirectToAction("Recipe/All");
+        }
+
         [HttpGet]
         public async Task<IActionResult> MyCookbook()
         {
@@ -53,5 +68,6 @@ namespace CookingTrickery.Controllers
 
             return View(recipes);
         }
+
     }
 }

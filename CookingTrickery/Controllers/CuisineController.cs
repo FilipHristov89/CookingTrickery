@@ -21,10 +21,14 @@ namespace CookingTrickery.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Cuisine(Guid id)
         {
             var model = await cuisineService.GetCuisineAsync(id);
+
+            model.CuisineRecipe = await cuisineService.GetLastThreeCuisineRecipes(id);
 
             return View(model);
         }

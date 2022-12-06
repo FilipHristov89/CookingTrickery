@@ -1,30 +1,48 @@
 ﻿$(document).ready(function () {
+    document.getElementById('AddIngr').addEventListener('click', function () {
+        //console.log('hi');
+        event.preventDefault();
 
-	// общ брой редове
-	var rowIdx = 0;
+        var container = document.getElementById('ingrContainer');
+        var ingredient = document.getElementById('ingredients');
+        var quantity = document.getElementById('quantity');
+        var measurement = document.getElementById('measurement');
 
-	// добавяне на ред
-	$('#AddIngB').on('click', function () {
-		event.preventDefault();
-		//нов ред
-		var newRow = "<tr id='row" + rowIdx + "'>";
-		//съставка
-		newRow += "<td id='ingredient" + rowIdx + "'>";
-		newRow += $("#ingredients").val();
-		newRow += "</td>";
-		//количество
-		newRow += "<td id='amount" + rowIdx + "'>";
-		newRow += $("#quantity").val();
-		newRow += "</td>";
-		//мерна единица
-		newRow += "<td id='unit" + rowIdx + "'>";
-		newRow += $("#measurements").val();
-		newRow += "</td>";
-		//край на реда
-		newRow += "</tr>";
-		//вкарвай в ХТМЛ-а
-		$('#tableList').append(newRow);
-		//увеличаваме брояча с 1
-		rowIdx++;
-	});
-});
+        var ingredientContainer = document.createElement('div');
+        var ingredientDiv = document.createElement('div');
+        var quantityDiv = document.createElement('div');
+        var measurementDiv = document.createElement('div');
+        var deleteButton = document.createElement('button')
+
+        var ingredientText = ingredient.options[ingredient.selectedIndex].text;
+        var quantityValue = quantity.value.trim();
+        var measurementText = measurement.options[measurement.selectedIndex].text;
+
+        deleteButton.innerText = 'X';
+
+        deleteButton.addEventListener('click', function () {
+            event.preventDefault();
+
+            container.removeChild(ingredientContainer);
+        });
+
+        ingredientDiv.textContent = ingredientText;
+        quantityDiv.textContent = quantityValue;
+        measurementDiv.textContent = measurementText;
+
+        ingredientDiv.id = ingredient.value;
+        measurementDiv.id = measurement.value;
+        ingredientContainer.className = 'ingredientsDiv';
+
+        ingredientContainer.append(quantityDiv);
+        ingredientContainer.append(measurementDiv);
+        ingredientContainer.append(ingredientDiv);
+        ingredientContainer.append(deleteButton);
+        
+        container.appendChild(ingredientContainer);
+
+    })
+})
+
+
+

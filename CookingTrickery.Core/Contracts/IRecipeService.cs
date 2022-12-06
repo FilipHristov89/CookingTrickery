@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace CookingTrickery.Core.Contracts
@@ -15,12 +16,13 @@ namespace CookingTrickery.Core.Contracts
 
         Task<RecipeViewModel> GetRecipeAsync(Guid id);
 
-        Task<CreateRecipeViewModel> CreateRecipeAsync(RecipePreviewViewModel recipe);
+        Task CreateRecipeAsync(CreateRecipeViewModel recipe, string userId, string recipeIngredients);
 
         Task<IEnumerable<Ingredient>> GetIngredientsAsync();
 
         Task<IEnumerable<Cuisine>> GetCuisinesAsync();
 
         Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId);
+
     }
 }

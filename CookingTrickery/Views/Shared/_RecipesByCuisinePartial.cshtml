@@ -1,0 +1,14 @@
+﻿@model RecipePreviewViewModel;
+
+
+<div class="recent">
+    <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@Model.Id">
+        <div class="recent-recipe">
+            <img src="@Model.ImageUrl">
+            <p class="recipe-title">@Model.Name</p>
+            <p class="recipe-quickdesc">Description: @Model.QuickDescription</p>
+            <p class="recipe-cuisine">Cuisine: @Model.Cuisine</p>
+            <p class="recipe-user">Created by: @Model.User</p>
+        </div>
+    </a>
+</div>

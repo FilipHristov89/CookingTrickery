@@ -1,9 +1,4 @@
-﻿using NuGet.Protocol.Core.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CookingTrickery.Core.Models.Recipe;
 
 namespace CookingTrickery.Core.Models.Cuisines
 {
@@ -16,5 +11,8 @@ namespace CookingTrickery.Core.Models.Cuisines
         public string ImageUrl { get; set; } = null!;
 
         public string Description { get; set; } = null!;
+
+        public IEnumerable<RecipePreviewViewModel> CuisineRecipe { get; set; } = new List<RecipePreviewViewModel>();
+
     }
 }

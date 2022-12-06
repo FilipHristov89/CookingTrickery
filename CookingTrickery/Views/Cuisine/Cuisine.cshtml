@@ -1,5 +1,5 @@
 ﻿@model CuisineViewModel
-@{
+{
     ViewBag.Title = Model.Name;
 }
 
@@ -8,5 +8,20 @@
     <div class="wrap">
         <img src="@Model.ImageUrl" />
         <p>@Model.Description</p>
+    </div>
 </div>
+@{
+    if (!Model.CuisineRecipe.Any())
+    {
+    <h4>No recipes found for this cuisine yet!</h4>
+    <p>You know a recipe for the cuisine? Click here to created it!</p>
+    <input type="submit" asp-controller="Recipe" asp-action="CreateRecipe" value="Create Recipe" />
+    }
+}
 
+<div>
+    @foreach (var recipe in Model.CuisineRecipe)
+    {
+        <partial name="_RecipesByCuisinePartial" model="@recipe" />
+    }
+</div>
