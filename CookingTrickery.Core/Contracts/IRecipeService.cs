@@ -24,5 +24,7 @@ namespace CookingTrickery.Core.Contracts
 
         Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId);
 
+        Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipeAsync();
+
     }
 }

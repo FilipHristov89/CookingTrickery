@@ -2,6 +2,7 @@
 using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Nodes;
@@ -65,6 +66,25 @@ namespace CookingTrickery.Core.Services
         public async Task<IEnumerable<Ingredient>> GetIngredientsAsync()
         {
             return await repo.AllReadonly<Ingredient>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipeAsync()
+        {
+            var entity = await repo.AllReadonly<Recipe>()
+                .OrderByDescending(r => r.CreatedOn)
+                .Select(r => new RecipePreviewViewModel()
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    ImageUrl = r.ImageUrl,
+                    QuickDescription = r.QuickDescription,
+                    Cuisine = r.Cuisine.Name,
+                    User = r.User.UserName
+                })
+                .Take(3)
+                .ToListAsync();
+
+            return entity;
         }
 
         public async Task<RecipeViewModel> GetRecipeAsync(Guid id)

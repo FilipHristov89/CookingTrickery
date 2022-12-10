@@ -1,12 +1,10 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Ingredients;
 using CookingTrickery.Core.Models.Recipe;
-using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Common;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace CookingTrickery.Core.Services
 {

@@ -4,7 +4,6 @@ using CookingTrickery.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,10 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookingTrickery.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(CookingTrickeryDbContext))]
-    [Migration("20221115183648_SeedMoreIngredients")]
-    partial class SeedMoreIngredients
+    partial class CookingTrickeryDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,7 +258,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("47b234b1-5a56-4c29-a0ff-73994c4175d3"),
+                            Id = new Guid("8b795baf-ad41-4b02-8e4e-39d243925948"),
                             Calories = 47,
                             Description = "An orange is a fruit of various citrus species in the family Rutaceae it primarily refers to Citrus × sinensis, which is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange.",
                             ImageUrl = "https://www.santosfood.com/wp-content/uploads/2020/01/img-7.jpg?1742x1295",
@@ -270,7 +268,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bdfce3b9-39d0-49b3-8393-48f18bf2b134"),
+                            Id = new Guid("a4302433-575c-460a-a05f-92f7a0defaff"),
                             Calories = 0,
                             Description = "Salmon is the common name for several commercially important species of euryhaline ray-finned fish from the family Salmonidae, which are native to tributaries of the North Atlantic (genus Salmo) and North Pacific basin. Other closely related fish in the same family include trout, char, grayling, whitefish, lenok and taimen.",
                             ImageUrl = "https://img.freepik.com/free-photo/raw-salmon-meat_74190-1592.jpg?w=1380&t=st=1668534014~exp=1668534614~hmac=e1cb4b7b026444b95a5c0c5f9ec2f456568e1d925029a11b6792b9481562f92f",
@@ -280,7 +278,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a38a088d-3fef-4086-8f95-b088cdc067db"),
+                            Id = new Guid("d093ed6b-e1b4-4a55-8517-35991481afde"),
                             Calories = 0,
                             Description = "An egg is an organic vessel grown by an animal to carry a possibly fertilized egg cell (a zygote) and to incubate from it an embryo within the egg until the embryo has become an animal fetus that can survive on its own, at which point the animal hatches.",
                             ImageUrl = "https://i.guim.co.uk/img/media/db9a96e1251a41a215ada849407983cedadc2fbb/0_252_2574_1545/master/2574.jpg?width=620&quality=85&dpr=1&s=none",
@@ -290,7 +288,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("072818d1-6852-473a-b27b-803559c2de35"),
+                            Id = new Guid("3b41c9f9-a9fb-45e9-8917-18357ccd614a"),
                             Calories = 0,
                             Description = "Milk is a white liquid food produced by the mammary glands of mammals. It is the primary source of nutrition for young mammals (including breastfed human infants) before they are able to digest solid food Immune factors and immune-modulating components in milk contribute to milk immunity.",
                             ImageUrl = "https://solidstarts.com/wp-content/uploads/Milk-for-Babies-480x320.webp",
@@ -300,7 +298,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("63cd1418-5533-4056-a82e-61d1cba11370"),
+                            Id = new Guid("4e7915de-db66-42a0-a8ef-f646266a2986"),
                             Calories = 0,
                             Description = "Parmesan (Italian: Parmigiano Reggiano; Italian pronunciation: [parmiˈdʒaːno redˈdʒaːno]) is an Italian hard, granular cheese produced from cows’ milk and aged at least 12 months.",
                             ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
@@ -310,7 +308,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("918df8b2-4cfb-457b-8eec-23fa0fc35a2f"),
+                            Id = new Guid("298e8c21-c635-4d06-bcfc-8eb3b59f3b8d"),
                             Calories = 0,
                             Description = "Cream fresh is a dairy product, a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture.",
                             ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
@@ -320,7 +318,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2b4a94a0-0693-4b75-9667-a57cdf3d576e"),
+                            Id = new Guid("fd0dd998-a8e5-44e7-a22e-98f533978b19"),
                             Calories = 0,
                             Description = "Cream fresh is a dairy product, a soured cream containing 10–45% butterfat, with a pH of approximately 4.5. It is soured with a bacterial culture.",
                             ImageUrl = "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/parmesan-00f8b31.jpg?quality=90&webp=true&resize=300,272",
@@ -330,7 +328,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("653294cb-c5fd-4c51-a470-25854918fb9d"),
+                            Id = new Guid("77a9351e-30d2-45d3-8eb3-020a2d5143dc"),
                             Calories = 0,
                             Description = "Merguez s a red, spicy mutton- or beef-based fresh sausage in Maghrebi cuisine.[1][2] Since the late 20th century, it has been popular in France and Great Britain due to the large Algerian populations",
                             ImageUrl = "https://thegourmetgoatfarmer.co.uk/wp-content/uploads/2021/01/Merguez-Sausages-600x461.jpg",
@@ -340,7 +338,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0d4d9a46-26f5-4ec4-872a-80afae65b2b2"),
+                            Id = new Guid("97e8fe5d-0143-4158-b026-5e2770db1592"),
                             Calories = 0,
                             Description = "Linguine sometimes anglicized as linguini is a type of pasta similar to fettuccine and trenette but elliptical in section rather than flat.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/da/Linguine.jpg",
@@ -350,7 +348,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("07a09f60-233b-4ff3-bf95-b702917ae703"),
+                            Id = new Guid("28193ede-2a6d-4775-ac26-1cd82cabdb19"),
                             Calories = 0,
                             Description = "Squid Ink is a dark-coloured or luminous ink released into water by most species of cephalopod, usually as an escape mechanism. Modern use of cephalopod ink is generally limited to cooking, primarily in Japan and the Mediterranean, where it is used as a food colouring and flavouring, for example in pasta and sauces, and calamares en su tinta.",
                             ImageUrl = "https://chgojohn.files.wordpress.com/2015/12/squid-ink.jpg",
@@ -360,7 +358,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9b553652-138e-44c1-92a0-253cda2f7d79"),
+                            Id = new Guid("6a168770-52a1-41bd-b423-d3bb1349bfa6"),
                             Calories = 0,
                             Description = "Squid Ink is a dark-coloured or luminous ink released into water by most species of cephalopod, usually as an escape mechanism. Modern use of cephalopod ink is generally limited to cooking, primarily in Japan and the Mediterranean, where it is used as a food colouring and flavouring, for example in pasta and sauces, and calamares en su tinta.",
                             ImageUrl = "https://media.npr.org/assets/img/2017/02/23/butter1_custom-340e5902a868b66b8f11aca60a5b2eed334971eb-s800-c85.webp",
@@ -370,7 +368,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c78e46a6-76aa-40ed-945e-a50b7804d543"),
+                            Id = new Guid("9cae18ec-4b6d-4850-bde6-d6bb52922e75"),
                             Calories = 0,
                             Description = "The pistachio a member of the cashew family, is a small tree originating from Central Asia and the Middle East. The tree produces seeds that are widely consumed as food.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Pistachio_macro_whitebackground_NS.jpg/220px-Pistachio_macro_whitebackground_NS.jpg",
@@ -380,7 +378,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9ffc3a81-a39d-4c36-83c8-2a7a043a947d"),
+                            Id = new Guid("6c23e094-f333-4954-9414-4123f6196a87"),
                             Calories = 0,
                             Description = "Multigrain bread is made with different types of flour and Theobroma’s multigrain loaf offers you the goodness of 8 different types of flour. This includes jowar, ragi, soya, oats and whole wheat flour.",
                             ImageUrl = "https://www.seasonsandsuppers.ca/wp-content/uploads/2021/09/multigrain-bread-1200-600x600.jpg",
@@ -390,7 +388,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("94bbb0e7-a4a9-4948-b6ae-e69959c71c62"),
+                            Id = new Guid("cdec6305-f88e-4198-b1c0-698e4f180de8"),
                             Calories = 0,
                             Description = "Cognac is a variety of brandy named after the commune of Cognac, France. It is produced in the surrounding wine-growing region in the departments of Charente and Charente-Maritime.Cognac production falls under French appellation d'origine contrôlée designation, with production methods and naming required to meet certain legal requirements. Among the specified grapes, Ugni blanc, known locally as Saint-Émilion, is most widely used.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Cognac_glass_-_tulip_shaped.JPG/800px-Cognac_glass_-_tulip_shaped.JPG",
@@ -400,7 +398,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("88bb61fd-478a-4431-ba19-3b45230656eb"),
+                            Id = new Guid("0bf102a5-283c-47ca-ae47-9341024134f5"),
                             Calories = 0,
                             Description = "Peas are annual plants, with a life cycle of one year. They are a cool-season crop grown in many parts of the world, planting can take place from winter to early summer depending on location. The average pea weighs between 0.1 and 0.36 gram.The immature peas (and in snow peas the tender pod as well) are used as a vegetable, fresh, frozen or canned, varieties of the species typically called field peas are grown to produce dry peas like the split pea shelled from a matured pod.",
                             ImageUrl = "https://www.almanac.com/sites/default/files/styles/max_1300x1300/public/image_nodes/peas-and-pea-pods.jpg?itok=qWmqcepy",
@@ -410,7 +408,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("38ff0d4d-96df-4f76-9735-4510801e721b"),
+                            Id = new Guid("8f6a8b57-c778-4d96-be31-9bfb5b183cfd"),
                             Calories = 0,
                             Description = "rborio rice is an Italian short-grain rice. It is named after the town of Arborio, in the Po Valley, which is situated in the region of Piedmont in Italy. When cooked, the rounded grains are firm, and creamy and chewy compared to other varieties of rice, due to their higher amylopectin starch content It has a starchy taste and blends well with other flavours.",
                             ImageUrl = "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_730,h_487/k%2FPhoto%2FSeries%2F2021-03-rice-o-pedia%2FArborio-Rice%2F2021-03-30_ATK-48176-Rice-Arborio",
@@ -420,7 +418,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0add8fdc-b4d9-4ea6-bc0b-89d0801d204e"),
+                            Id = new Guid("bac34873-6e88-4278-87a8-9f558bfde551"),
                             Calories = 0,
                             Description = "Honey is a sweet and viscous substance made by several bees, the best-known of which are honey bees.Honey is made and stored to nourish bee colonies. Bees produce honey by gathering and then refining the sugary secretions of plants (primarily floral nectar) or the secretions of other insects, like the honeydew of aphids.",
                             ImageUrl = "https://5.imimg.com/data5/YH/RH/MY-43324479/natural-honey-1000x1000.jpg",
@@ -430,7 +428,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7e7b0452-876f-428c-b56c-61c13663e629"),
+                            Id = new Guid("1eea2900-c7ec-447b-b04c-217bbe9bfc94"),
                             Calories = 0,
                             Description = "Water is an inorganic, transparent, tasteless, odorless, and nearly colorless chemical substance, which is the main constituent of Earth's hydrosphere and the fluids of all known living organisms. It is vital for all known forms of life, despite providing neither food, energy, nor organic micronutrients",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Water_drop_001.jpg/1920px-Water_drop_001.jpg",
@@ -718,7 +716,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("b169fcbd-cde5-4a5b-8ab7-258572d98f8f"),
-                            CreatedOn = new DateTime(2022, 11, 15, 20, 36, 47, 770, DateTimeKind.Local).AddTicks(3929),
+                            CreatedOn = new DateTime(2022, 12, 10, 15, 31, 21, 280, DateTimeKind.Local).AddTicks(6922),
                             CuisineId = new Guid("ff8540f2-e7c9-4546-a7d9-f25b42c72b50"),
                             Description = "Heat olive oil in a large cast iron skillet over medium heat.Season beef with salt and pepper, to taste. Add beef to the skillet and cook until evenly browned, about 2-3 minutes.Place beef, potatoes, carrots, onion and garlic into a 6-qt slow cooker. Stir in beef broth, tomato paste, Worcestershire, thyme, rosemary, paprika, caraway seeds and bay leaves until well combined; season with salt and pepper, to taste.Cover and cook on low heat for 7-8 hours or high heat for 3-4 hours.In a small bowl, whisk together flour and 1/2 cup stew broth. Stir in flour mixture into the slow cooker. Cover and cook on high heat for an additional 30 minutes, or until thickened.Serve immediately, garnished with parsley, if desired.",
                             ImageUrl = "https://s23209.pcdn.co/wp-content/uploads/2016/10/221024_DD_Slow-Cooker-Beef-Stew_218-760x1140.jpg",
@@ -770,6 +768,15 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "d2b7fd6f-b310-47af-8669-0517e64ac4b6",
+                            ConcurrencyStamp = "974f5276-0850-4225-a6dd-eaca17b9fbe7",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -932,6 +939,13 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "0093ae6c-d848-43bf-bc62-01c5e684f4a4",
+                            RoleId = "d2b7fd6f-b310-47af-8669-0517e64ac4b6"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -981,15 +995,15 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         {
                             Id = "0093ae6c-d848-43bf-bc62-01c5e684f4a4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d8dd777e-d87e-4ccb-a944-49291c143bb5",
+                            ConcurrencyStamp = "74e7b26b-1af1-46ba-a8e2-7936425fcc44",
                             Email = "f.g.hristov@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "F.G.HRISTOV@GMAIL.COM",
                             NormalizedUserName = "FROZSTY",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHNdtfIBKB9lTVcIa/tXpSNV1Ze54iYG9u9zHh1rrnFd8k9MPs+xo2ufl/3L80uPdw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOlz15TcIKpOw5m9bBz9HVHgayJ1+fqVAbiSZs6APBwek1JVN141iLqT76Enxzx1dA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ae2c9a8d-ad62-4cfc-b2b3-e7625b070865",
+                            SecurityStamp = "9938bb16-2c5e-4c32-8797-00d4269c53c7",
                             TwoFactorEnabled = false,
                             UserName = "Frozsty",
                             FirstName = "Filip",
@@ -999,15 +1013,15 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
                         {
                             Id = "bc60d5f7-3884-42c6-9fb5-e1db55094536",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "39199cbc-5f5a-443c-83f5-9f9c555d250c",
+                            ConcurrencyStamp = "ac433ec7-3fcb-4f91-82ad-c13b7e6ec15f",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@GMAIL.COM",
                             NormalizedUserName = "GUEST",
-                            PasswordHash = "AQAAAAEAACcQAAAAELJ8jeuzZuzrznsXPjYs00pb/sxdPUHSdK4Kqosh93JDrIOghOUAGuQenteA48tFxg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH93q4coHAZHGlfNZhxgnqe0ym08xqHD4iID8K8K4epbdELRu6LnMEJucR+vlUnCvw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e1fa660f-e9de-47a7-8325-d1643aaf087b",
+                            SecurityStamp = "5fddf3d7-3e81-466d-9b51-8196296a0c82",
                             TwoFactorEnabled = false,
                             UserName = "Guest",
                             FirstName = "Petar",

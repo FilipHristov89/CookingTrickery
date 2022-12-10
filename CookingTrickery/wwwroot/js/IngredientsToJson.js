@@ -5,8 +5,7 @@
         var container = document.getElementById('ingrContainer');
         var children = container.getElementsByClassName('ingredientsDiv');
         console.log(children)
-        var ingredients = {};
-        var data = [];
+        var data = new Object();
         for (var ingr of children) {
 
             var ingreds = ingr.getElementsByTagName('div');
@@ -14,27 +13,26 @@
             var measurement = ingreds[1].id;
             var ingredient = ingreds[2].id;
 
-            ingredients.quantity = JSON.stringify(quantity);
-            ingredients.measurement = JSON.stringify(measurement);
-            ingredients.ingredient = JSON.stringify(ingredient);
-
-            data.push(ingredients)
+            data.quantity = JSON.stringify(quantity);
+            data.measurement = JSON.stringify(measurement);
+            data.ingredient = JSON.stringify(ingredient);
         }
-        SendData(data);
-    })
-    function SendData(data)
-    {
+        console.log(data);
         $.ajax(
             {
                 type: "POST",
-                contentType: "application/json; charset=utf-8",
-                url: "https://localhost:7295/Recipe/CreateRecipe",
+                url: "/Recipe/GetRecipeIngredients",
                 data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function () {
                     console.log('Data sended')
-                }
+                },
+                failure: function () {
+                    console.log('failed')
+                },
+                Error: console.log(Error.name)
             }
         )
-    }
+    })
 })

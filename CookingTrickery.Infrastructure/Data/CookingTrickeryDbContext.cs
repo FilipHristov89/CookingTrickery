@@ -26,11 +26,13 @@ namespace CookingTrickery.Infrastructure.Data
         {
             builder.ApplyConfiguration(new IngredientMeasurementConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new UsersFavoriteConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new RecipeConfiguration());
             builder.ApplyConfiguration(new IngredientConfiguration());
             builder.ApplyConfiguration(new MeasurementConfiguration());
             builder.ApplyConfiguration(new CuisineConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new UsersFavoriteConfiguration());
 
             base.OnModelCreating(builder);
         }

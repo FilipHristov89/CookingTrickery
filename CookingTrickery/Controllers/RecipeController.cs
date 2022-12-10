@@ -59,6 +59,14 @@ namespace CookingTrickery.Controllers
             return RedirectToAction("Recipe/All");
         }
 
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetRecipeIngredients([FromBody] string ingredients)
+        {
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> MyCookbook()
         {
@@ -68,6 +76,5 @@ namespace CookingTrickery.Controllers
 
             return View(recipes);
         }
-
     }
 }

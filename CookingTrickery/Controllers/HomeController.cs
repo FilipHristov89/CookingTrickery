@@ -1,4 +1,5 @@
-﻿using CookingTrickery.Models;
+﻿using CookingTrickery.Core.Contracts;
+using CookingTrickery.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,14 +9,19 @@ namespace CookingTrickery.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IRecipeService recipeService;
+
+        public HomeController(ILogger<HomeController> logger, IRecipeService _recipeService)
         {
             _logger = logger;
+            recipeService = _recipeService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await recipeService.GetLastThreeRecipeAsync();
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

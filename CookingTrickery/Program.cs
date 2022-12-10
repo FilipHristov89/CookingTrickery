@@ -2,6 +2,7 @@ using CookingTrickery.Core.ModelBinders;
 using CookingTrickery.Infrastructure.Data;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.ControllerConstants;
@@ -22,8 +23,9 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
     options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:RequiredLength");
     options.Lockout.MaxFailedAccessAttempts = builder.Configuration.GetValue<int>("Identity:MaxFailedAccessAttempts");
-}).AddRoles<IdentityRole>()
-.AddEntityFrameworkStores<CookingTrickeryDbContext>();
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<CookingTrickeryDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -33,6 +35,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
         options.ModelBinderProviders.Insert(0, new DoubleModelBinderProvider());
     });
 
@@ -61,9 +64,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapRazorPages();
+});
 
 app.Run();
