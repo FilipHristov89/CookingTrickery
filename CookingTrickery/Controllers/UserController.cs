@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.ControllerConstants;
 using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.RecipeControllerMethodConstants;
 using static CookingTrickery.Common.Constants.ControllerAndMethodConstants.UserControllerMethodConstants;
+using static CookingTrickery.Common.Constants.UserRolesConstant;
 
 namespace CookingTrickery.Controllers
 {
@@ -102,6 +103,11 @@ namespace CookingTrickery.Controllers
 
                 if (result.Succeeded)
                 {
+                    if (await userManager.IsInRoleAsync(user, Administrator))
+                    {
+                        return RedirectToAction("Index", "Admin", new { area = "Administration" });
+                    }
+
                     return RedirectToAction(RecipeAllMethod, RecipeControllerValue);
                 }
             }
