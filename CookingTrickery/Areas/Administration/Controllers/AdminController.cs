@@ -13,11 +13,11 @@ namespace CookingTrickery.Areas.Administration.Controllers
             recipeService = _recipeService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var model = await recipeService.GetLastThreeRecipeAsync();
 
-            return View(model);
+            return View();
         }
     }
 }
+    

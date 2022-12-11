@@ -1,34 +1,26 @@
-﻿@model IEnumerable<RecipePreviewViewModel>;
-@{
+﻿@{
     ViewBag.Title = "Admin Page";
 }
 
-<h1>Hello Admin</h1>
-
-<div class="text-center">
-    <h1 class="display-1 recipes-headers">Cooking Trickery</h1>
-    <h3 class="display-5 recipes-headers">A Cook's Trickery</h3>
-    <div class="recent-recipes">
-        <div class="wrap">
-            <h4>
-                <span>Recent Recipes</span>
-            </h4>
-            @{
-                foreach (var recipe in Model)
-                {
-                    <div class="recent">
-                        <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
-                            <div class="recent-recipe">
-                                <img src="@recipe.ImageUrl">
-                                <p class="recipe-title">@recipe.Name</p>
-                                <p class="recipe-quickdesc">Description: @recipe.QuickDescription</p>
-                                <p class="recipe-cuisine">Cuisine: @recipe.Cuisine</p>
-                                <p class="recipe-user">Created by: @recipe.User</p>
-                            </div>
-                        </a>
-                    </div>
-                }
-            }
-        </div>
-    </div>
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Hello, Admin!</h2>
+    <p class="lead mb-1 mt-3">
+        This is your administrator area - Here you can all <b>recent</b> <b>recipes</b>,
+        <b>ingredients</b> and <b>cuisines</b>.
+        <br />
+    </p>
+    <p class="lead mt-1">
+        You can also manage the <b>users</b> too!.
+    </p>
+    <hr class="my-4">
+    <a asp-area="" asp-controller="Recipe" asp-action="All"
+       class="btn btn-primary btn-lg">All Recipes</a>
+    <a asp-area="" asp-controller="Ingredient" asp-action="AllIngredients"
+       class="btn btn-primary btn-lg">All Recipes</a>
+    <a asp-area="" asp-controller="Cuisine" asp-action="Cuisines"
+       class="btn btn-primary btn-lg">All Cuisines</a>
+    <span>  |   </span>
+    <a asp-area="Administration" asp-controller="User" asp-action="All"
+       class="btn btn-primary btn-lg">All Users</a>
+    <span>  |   </span>
 </div>
