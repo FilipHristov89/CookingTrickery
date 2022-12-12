@@ -50,7 +50,7 @@ namespace CookingTrickery.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRecipe(
             CreateRecipeViewModel model,
-            string recipeIngredients)
+            string[] recipeIngredients)
         {
             var userId = User.Id();
 
@@ -62,7 +62,7 @@ namespace CookingTrickery.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> GetRecipeIngredients([FromBody] string ingredients)
+        public async Task<IActionResult> GetRecipeIngredients([FromBody] string[] ingredients)
         {
             return Ok();
         }

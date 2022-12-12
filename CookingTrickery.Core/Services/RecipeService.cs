@@ -18,7 +18,7 @@ namespace CookingTrickery.Core.Services
             repo = _repo;
         }
 
-        public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId, string recipeIngredients)
+        public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId, string[] recipeIngredients)
         {
             var recipe = new Recipe()
             {
@@ -26,7 +26,7 @@ namespace CookingTrickery.Core.Services
                 Name = model.Name,
                 QuickDescription = model.QuickDescription,
                 ImageUrl = model.ImageUrl,
-                Ingredients = RecipeIngredients(recipeIngredients),
+                //Ingredients = RecipeIngredients(recipeIngredients),
                 CuisineId = model.CuisineId,
                 NumberOfServing = model.NumberOfServings,
                 PrepTime = model.PrepTime,
@@ -35,8 +35,8 @@ namespace CookingTrickery.Core.Services
                 UserId = userId
             };
 
-            await repo.AddAsync<Recipe>(recipe);
-            await repo.SaveChangesAsync();
+            //await repo.AddAsync<Recipe>(recipe);
+            //await repo.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
@@ -137,7 +137,7 @@ namespace CookingTrickery.Core.Services
             return recipes;
         }
 
-        private ICollection<IngredientMeasurement> RecipeIngredients(string ingredientList)
+        private ICollection<IngredientMeasurement> RecipeIngredients(string[] ingredientList)
         {
             ICollection<IngredientMeasurement> ingredients = new List<IngredientMeasurement>();
 

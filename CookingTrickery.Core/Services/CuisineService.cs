@@ -31,6 +31,26 @@ namespace CookingTrickery.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public async Task AddFavoriteCuisineAsync(string userId, Guid cuisineId)
+        {
+            var user = await repo.GetByIdAsync<User>(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("Invalid user");
+            }
+            var cuisine = await repo.GetByIdAsync<Cuisine>(cuisineId);
+
+            if (cuisine == null)
+            {
+                throw new ArgumentException("Invalid cuisine");
+            }
+
+            user.FavoriteCuisine = cuisine;
+
+            await repo.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<CuisinePreviewViewModel>> GetAllCuisinesAsync()
         {
             var cuisines = await repo.AllReadonly<Cuisine>()

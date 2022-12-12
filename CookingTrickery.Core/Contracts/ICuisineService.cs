@@ -12,5 +12,7 @@ namespace CookingTrickery.Core.Contracts
         Task CreateCuisine(CreateCuisineViewModel model);
 
         Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeCuisineRecipes(Guid id);
+
+        Task AddFavoriteCuisineAsync(string userId, Guid cuisineId);
     }
 }

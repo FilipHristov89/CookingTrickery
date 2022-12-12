@@ -1,5 +1,6 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Cuisines;
+using CookingTrickery.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +61,12 @@ namespace CookingTrickery.Controllers
                 ModelState.AddModelError("", "Wrong values, please try again");
                 return View(model);
             }
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddFavoriteCuisine(Guid id)
+        {
+            await cuisineService.AddFavoriteCuisineAsync(User.Id(), id);
+            return RedirectToAction(nameof(Cuisines));
         }
     }
 }

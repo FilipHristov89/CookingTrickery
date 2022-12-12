@@ -8,6 +8,13 @@
     <div class="wrap">
         <img src="@Model.ImageUrl" />
         <p>@Model.Description</p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="ml-2" asp-controller="Cuisine"
+              asp-action="AddFavoriteCuisine" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-primary" type="submit" value="Favorite" />
+            </form>
+        }
     </div>
 </div>
 @{

@@ -16,7 +16,7 @@ namespace CookingTrickery.Core.Contracts
 
         Task<RecipeViewModel> GetRecipeAsync(Guid id);
 
-        Task CreateRecipeAsync(CreateRecipeViewModel recipe, string userId, string recipeIngredients);
+        Task CreateRecipeAsync(CreateRecipeViewModel recipe, string userId, string[] recipeIngredients);
 
         Task<IEnumerable<Ingredient>> GetIngredientsAsync();
 
