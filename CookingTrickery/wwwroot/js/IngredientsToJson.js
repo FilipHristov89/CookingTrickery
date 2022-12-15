@@ -20,8 +20,9 @@
             data.push(ingrObj)
         }
         console.log(data);
-        $.post('Recipe/GetRecipeIngredients', data, function(){
-            console.log('sended')
-        }); 
+
+        var ingrSend = document.getElementById('ingrSend');
+
+        ingrSend.value = data;
     })
 })

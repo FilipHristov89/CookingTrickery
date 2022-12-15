@@ -26,7 +26,13 @@
         <div class="recipe-descr">
             @Model.Description
         </div>
-
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="ml-2" asp-controller="Recipe"
+              asp-action="AddToFavoriteRecipes" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-primary" type="submit" value="Favorite" />
+            </form>
+        }
         <div class="rating">5</div>
     </div>
 </div>

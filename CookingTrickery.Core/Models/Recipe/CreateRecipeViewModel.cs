@@ -1,7 +1,8 @@
-﻿using CookingTrickery.Infrastructure.Data.Common;
+﻿using CookingTrickery.Core.Models.Ingredients;
+using CookingTrickery.Infrastructure.Data.Common;
 using CookingTrickery.Infrastructure.Data.Entities;
 using System.ComponentModel.DataAnnotations;
-
+using System.Text.Json.Nodes;
 using static CookingTrickery.Infrastructure.Data.Common.Constants.RecipeConstants;
 
 namespace CookingTrickery.Core.Models.Recipe
@@ -31,9 +32,9 @@ namespace CookingTrickery.Core.Models.Recipe
         [StringLength(RecipeDescriptionMaxLength, MinimumLength = RecipeDescriptionMinLength)]
         public string Description { get; set; } = null!;
         
+        [Required]
         public Guid CuisineId { get; set; }
         public IEnumerable<Cuisine> Cuisines { get; set; } = new List<Cuisine>();
-
 
         [Required]
         public int NumberOfServings { get; set; }
@@ -41,5 +42,9 @@ namespace CookingTrickery.Core.Models.Recipe
         [Required]
         public string PrepTime { get; set; } = null!;
 
+        public JsonArray Test { get; set; }
+
+        //public IEnumerable<IngredientsMeasurementViewModel> IngredientsMeasurement { get; set; }
+        //    = new List<IngredientsMeasurementViewModel>();
     }
 }

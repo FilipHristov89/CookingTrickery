@@ -18,6 +18,35 @@ namespace CookingTrickery.Core.Services
             repo = _repo;
         }
 
+        public async Task AddToFavoriteRecipesAsync(Guid recipeId, string userId)
+        {
+            var user = await repo.GetByIdAsync<User>(userId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("Invalid user");
+            }
+            var recipe = await repo.GetByIdAsync<Recipe>(recipeId);
+
+            if (recipe == null)
+            {
+                throw new ArgumentException("Invalid cuisine");
+            }
+
+            if (!user.FavoriteRecipes.Any(r => r.RecipeId == recipeId))
+            {
+                user.FavoriteRecipes.Add(new UsersFavorites()
+                {
+                    UserId = user.Id,
+                    User = user,
+                    RecipeId = recipe.Id,
+                    Recipe = recipe
+                });
+
+                await repo.SaveChangesAsync();
+            }
+        }
+
         public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId, string[] recipeIngredients)
         {
             var recipe = new Recipe()
@@ -117,6 +146,25 @@ namespace CookingTrickery.Core.Services
                 .FirstAsync();
 
             return entity;
+        }
+
+        public async Task<IEnumerable<RecipePreviewViewModel>> GetUserFavoriteRecipesAsync(string userId)
+        {
+            var recipe = await repo.AllReadonly<UsersFavorites>()
+                .Include(uf => uf.Recipe)
+                .Where(uf => uf.UserId == userId)
+                .Select(uf => new RecipePreviewViewModel()
+                {
+                    Id = uf.RecipeId,
+                    Name = uf.Recipe.Name,
+                    QuickDescription = uf.Recipe.QuickDescription,
+                    ImageUrl = uf.Recipe.ImageUrl,
+                    Cuisine = uf.Recipe.Cuisine.Name,
+                    User = uf.User.UserName
+                })
+                .ToListAsync();
+
+            return recipe;
         }
 
         public async Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId)

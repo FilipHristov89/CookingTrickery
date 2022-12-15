@@ -57,17 +57,21 @@
                     </div>
                     <input id="AddIngr" class="btn btn-toolbar" type="button" value="Add ingredient" />
                 </div>
-                <div id="ingrContainer"></div>
+                <section id="ingrContainer"></section>
+                <label asp-for="@Model.Test" class="form-label">Title</label>
+                <input type="hidden" asp-for="@Model.Test" id="ingrSend" class="form-control" aria-required="true"/>
+                <span asp-validation-for="Test" class="text-danger"></span>
+                <span></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Cuisines" class="form-label">Quantity</label>
-                <select asp-for="@Model.Cuisines" class="form-control" aria-required="true">
+                <label asp-for="@Model.CuisineId" class="form-label">Quantity</label>
+                <select asp-for="@Model.CuisineId" class="form-control" aria-required="true">
                     @foreach (var cuisine in Model.Cuisines)
                     {
                         <option value="@cuisine.Id">@cuisine.Name</option>
                     }
                 </select>
-                <span asp-validation-for="Cuisines" class="text-danger"></span>
+                <span asp-validation-for="CuisineId" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.NumberOfServings" class="form-label">Servings</label>

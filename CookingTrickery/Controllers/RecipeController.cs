@@ -1,11 +1,8 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Extensions;
-using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using System.Text.Json.Nodes;
 
 namespace CookingTrickery.Controllers
 {
@@ -54,6 +51,8 @@ namespace CookingTrickery.Controllers
         {
             var userId = User.Id();
 
+            var ingr = model.Test;
+
             await recipeService.CreateRecipeAsync(model, userId, recipeIngredients);
 
             return RedirectToAction("Recipe/All");
@@ -75,6 +74,21 @@ namespace CookingTrickery.Controllers
             var recipes = await recipeService.GetUserRecipes(userId);
 
             return View(recipes);
+        }
+
+        public async Task<IActionResult> AddToFavoriteRecipes(Guid id)
+        {
+            await recipeService.AddToFavoriteRecipesAsync(id, User.Id());
+
+            return RedirectToAction(nameof(MyFavorites));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MyFavorites()
+        {
+            var model = await recipeService.GetUserFavoriteRecipesAsync(User.Id());
+
+            return View(model);
         }
     }
 }
