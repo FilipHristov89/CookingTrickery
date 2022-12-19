@@ -8,10 +8,8 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<IngredientMeasurement> builder)
         {
-            builder.HasData(SeedIngredientMeasurements());
+            //builder.HasData(SeedIngredientMeasurements());
         }
-
-
 
         private List<IngredientMeasurement> SeedIngredientMeasurements()
         {

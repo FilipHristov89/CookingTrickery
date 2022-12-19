@@ -1,5 +1,6 @@
 ﻿using CookingTrickery.Core.Contracts;
 using CookingTrickery.Core.Contracts.Administration;
+using CookingTrickery.Core.Exceptions;
 using CookingTrickery.Core.Services;
 using CookingTrickery.Core.Services.Admin;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
@@ -16,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<ICuisineService, CuisineService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGuard, Guard>();
 
             return services;
         }

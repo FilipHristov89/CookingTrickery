@@ -12,7 +12,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
             //IngredientTypeConversion(builder);
-            builder.HasData(IngredientSeed());
+            //builder.HasData(IngredientSeed());
         }
 
         //private void IngredientTypeConversion(EntityTypeBuilder<Ingredient> builder)

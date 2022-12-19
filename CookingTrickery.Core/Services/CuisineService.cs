@@ -1,4 +1,5 @@
 ﻿using CookingTrickery.Core.Contracts;
+using CookingTrickery.Core.Exceptions;
 using CookingTrickery.Core.Models.Cuisines;
 using CookingTrickery.Core.Models.Recipe;
 using CookingTrickery.Infrastructure.Data;
@@ -12,10 +13,12 @@ namespace CookingTrickery.Core.Services
     public class CuisineService : ICuisineService
     {
         private readonly IRepository repo;
+        private IGuard guard;
 
-        public CuisineService(IRepository _repo)
+        public CuisineService(IRepository _repo, IGuard _guard)
         {
             repo = _repo;
+            guard = _guard;
         }
 
         public async Task CreateCuisine(CreateCuisineViewModel model)
@@ -35,6 +38,8 @@ namespace CookingTrickery.Core.Services
         public async Task AddFavoriteCuisineAsync(string userId, Guid cuisineId)
         {
             var user = await repo.GetByIdAsync<User>(userId);
+
+            guard.AgainstNull(user, "User cannot be null");
 
             if (user == null)
             {

@@ -10,7 +10,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Measurement> builder)
         {
-            builder.HasData(MeasurementsSeed());
+            //builder.HasData(MeasurementsSeed());
         }
 
         private List<Measurement> MeasurementsSeed()

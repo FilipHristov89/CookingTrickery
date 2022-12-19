@@ -49,7 +49,7 @@ namespace CookingTrickery.Controllers
             try
             {
                 await ingredientService.CreateIngredientAsync(model);
-                return View(nameof(All));
+                return View(nameof(AllIngredients));
             }
             catch (Exception)
             {

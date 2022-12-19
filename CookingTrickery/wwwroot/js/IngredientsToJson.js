@@ -13,16 +13,18 @@
             var measurement = ingreds[1].id;
             var ingredient = ingreds[2].id;
 
-            ingrObj.quantity = JSON.stringify(quantity);
-            ingrObj.measurement = JSON.stringify(measurement);
-            ingrObj.ingredient = JSON.stringify(ingredient);
+            ingrObj.quantity = quantity;
+            ingrObj.measurement = measurement;
+            ingrObj.ingredientId = ingredient;
 
             data.push(ingrObj)
-        }
-        console.log(data);
+        } 
+
+        console.log(typeof (data));
+        console.log(JSON.stringify(data));
 
         var ingrSend = document.getElementById('ingrSend');
 
-        ingrSend.value = data;
+        ingrSend.append(JSON.stringify(data));
     })
 })

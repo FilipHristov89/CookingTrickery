@@ -3,7 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace CookingTrickery.Core.Models.Ingredients
 {
-    public class IngredientsMeasurementViewModel
+    public class IngredientsMeasurementModel
     {
 
         public Guid IngredientId { get; set; }

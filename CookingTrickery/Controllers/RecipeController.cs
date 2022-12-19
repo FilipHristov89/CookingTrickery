@@ -46,24 +46,16 @@ namespace CookingTrickery.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateRecipe(
-            CreateRecipeViewModel model,
-            string[] recipeIngredients)
+            CreateRecipeViewModel model
+            )
         {
             var userId = User.Id();
 
-            var ingr = model.Test;
+            var ingr = model.IngredientMeasurement;
 
-            await recipeService.CreateRecipeAsync(model, userId, recipeIngredients);
+            await recipeService.CreateRecipeAsync(model, userId);
 
-            return RedirectToAction("Recipe/All");
-        }
-
-        [HttpPost]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(500)]
-        public async Task<IActionResult> GetRecipeIngredients([FromBody] string[] ingredients)
-        {
-            return Ok();
+            return RedirectToAction(nameof(All));
         }
 
         [HttpGet]

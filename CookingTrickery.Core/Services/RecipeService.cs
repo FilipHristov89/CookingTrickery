@@ -1,10 +1,16 @@
 ﻿using CookingTrickery.Core.Contracts;
+using CookingTrickery.Core.Exceptions;
+using CookingTrickery.Core.Models.Ingredients;
 using CookingTrickery.Core.Models.Recipe;
+using CookingTrickery.Infrastructure.Data.Common;
 using CookingTrickery.Infrastructure.Data.Common.Repository;
 using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Nodes;
 
 namespace CookingTrickery.Core.Services
@@ -12,16 +18,19 @@ namespace CookingTrickery.Core.Services
     public class RecipeService : IRecipeService
     {
         private readonly IRepository repo;
+        private readonly IGuard guard;
 
-        public RecipeService(IRepository _repo)
+        public RecipeService(IRepository _repo, IGuard _guard)
         {
             repo = _repo;
+            guard = _guard;
         }
 
         public async Task AddToFavoriteRecipesAsync(Guid recipeId, string userId)
         {
             var user = await repo.GetByIdAsync<User>(userId);
 
+            guard.AgainstNull(user, "User cannot be null");
             if (user == null)
             {
                 throw new ArgumentException("Invalid user");
@@ -47,15 +56,16 @@ namespace CookingTrickery.Core.Services
             }
         }
 
-        public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId, string[] recipeIngredients)
+        public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId)
         {
+
             var recipe = new Recipe()
             {
                 Id = Guid.NewGuid(),
                 Name = model.Name,
                 QuickDescription = model.QuickDescription,
                 ImageUrl = model.ImageUrl,
-                //Ingredients = RecipeIngredients(recipeIngredients),
+                Ingredients = RecipeIngredients(model.IngredientMeasurement),
                 CuisineId = model.CuisineId,
                 NumberOfServing = model.NumberOfServings,
                 PrepTime = model.PrepTime,
@@ -64,8 +74,8 @@ namespace CookingTrickery.Core.Services
                 UserId = userId
             };
 
-            //await repo.AddAsync<Recipe>(recipe);
-            //await repo.SaveChangesAsync();
+            await repo.AddAsync<Recipe>(recipe);
+            await repo.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
@@ -185,20 +195,46 @@ namespace CookingTrickery.Core.Services
             return recipes;
         }
 
-        private ICollection<IngredientMeasurement> RecipeIngredients(string[] ingredientList)
+        private ICollection<IngredientMeasurement> RecipeIngredients(string ingredientList)
         {
+
+            guard.AgainstNull(ingredientList, "Ingredients cannot be null");
+
+            IngredientsMeasurementModel[] model = JsonConvert.DeserializeObject<IngredientsMeasurementModel[]>(ingredientList);
+
             ICollection<IngredientMeasurement> ingredients = new List<IngredientMeasurement>();
 
-            //foreach (var item in ingredientList)
-            //{
-            //    ingredientList.Add(new IngredientMeasurement()
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        IngredientId = item.ingredient
-            //    })
-            //}
+            foreach (IngredientsMeasurementModel item in model)
+            {
+                if (!IsValid(item))
+                {
+                    throw new ArgumentException("Invalid Data");
+                }
+
+                IngredientMeasurement ingredient = new IngredientMeasurement()
+                {
+                    Id = Guid.NewGuid(),
+                    IngredientId = item.IngredientId,
+                    Measurement = new Measurement()
+                    {
+                        Id = Guid.NewGuid(),
+                        Quantity = item.Quantity,
+                        MeasurementType = (MeasurementTypeEnum)item.Measurement
+                    },
+                };
+
+                ingredients.Add(ingredient);
+            }
 
             return ingredients;
+        }
+
+        private static bool IsValid(object item)
+        {
+            var validationContext = new ValidationContext(item);
+            var validationResult = new List<ValidationResult>();
+
+            return Validator.TryValidateObject(item, validationContext, validationResult, true);
         }
     }
 }

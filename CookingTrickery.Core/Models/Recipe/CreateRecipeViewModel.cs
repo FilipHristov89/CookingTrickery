@@ -1,8 +1,6 @@
-﻿using CookingTrickery.Core.Models.Ingredients;
-using CookingTrickery.Infrastructure.Data.Common;
+﻿using CookingTrickery.Infrastructure.Data.Common;
 using CookingTrickery.Infrastructure.Data.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Nodes;
 using static CookingTrickery.Infrastructure.Data.Common.Constants.RecipeConstants;
 
 namespace CookingTrickery.Core.Models.Recipe
@@ -42,7 +40,7 @@ namespace CookingTrickery.Core.Models.Recipe
         [Required]
         public string PrepTime { get; set; } = null!;
 
-        public JsonArray Test { get; set; }
+        public string IngredientMeasurement { get; set; }
 
         //public IEnumerable<IngredientsMeasurementViewModel> IngredientsMeasurement { get; set; }
         //    = new List<IngredientsMeasurementViewModel>();
