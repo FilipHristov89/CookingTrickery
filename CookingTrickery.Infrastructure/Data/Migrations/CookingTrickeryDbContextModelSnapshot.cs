@@ -44,7 +44,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cuisines");
+                    b.ToTable("Cuisines", (string)null);
 
                     b.HasData(
                         new
@@ -103,7 +103,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
 
                     b.HasData(
                         new
@@ -461,7 +461,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("IngredientMeasurements");
+                    b.ToTable("IngredientMeasurements", (string)null);
 
                     b.HasData(
                         new
@@ -557,7 +557,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Measurements");
+                    b.ToTable("Measurements", (string)null);
 
                     b.HasData(
                         new
@@ -710,7 +710,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
 
                     b.HasData(
                         new
@@ -740,7 +740,7 @@ namespace CookingTrickery.Infrastructure.Data.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("UserRecipes");
+                    b.ToTable("UserRecipes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

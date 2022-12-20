@@ -177,6 +177,8 @@ namespace CookingTrickery.Core.Services
             return recipe;
         }
 
+
+
         public async Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId)
         {
             var recipes = await repo.AllReadonly<Recipe>()
@@ -193,6 +195,21 @@ namespace CookingTrickery.Core.Services
                 .ToListAsync();
 
             return recipes;
+        }
+
+        public async Task DeleteRecipeAsync(Guid recipeId)
+        {
+            var recipe = await repo.GetByIdAsync<Recipe>(recipeId);
+
+            var recipeIngredients = await repo.All<IngredientMeasurement>()
+                .Where(im => im.RecipeId == recipeId)
+                .ToListAsync();
+
+            guard.AgainstNull(recipeId, "Id cannot be null");
+
+            await repo.DeleteAsync<Recipe>(recipeId);
+            repo.DeleteRange<IngredientMeasurement>(recipeIngredients);
+            await repo.SaveChangesAsync();
         }
 
         private ICollection<IngredientMeasurement> RecipeIngredients(string ingredientList)

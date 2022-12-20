@@ -33,6 +33,13 @@
                 <input class="btn btn-primary" type="submit" value="Favorite" />
             </form>
         }
+        @if (User.Identity.Name == Model.User || this.User.IsInRole("Administrator"))
+        {
+            <form class="ml-2" asp-controller="Recipe"
+              asp-action="DeleteRecipe" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-primary" type="submit" value="Delete" />
+            </form>
+        }
         <div class="rating">5</div>
     </div>
 </div>

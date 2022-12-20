@@ -82,5 +82,13 @@ namespace CookingTrickery.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRecipe(Guid id)
+        {
+            await recipeService.DeleteRecipeAsync(id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

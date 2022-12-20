@@ -17,7 +17,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
             builder
                 .HasMany(r => r.Ingredients)
                 .WithOne(i => i.Recipe)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(r => r.Cuisine)
