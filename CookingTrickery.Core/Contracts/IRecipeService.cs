@@ -23,6 +23,10 @@ namespace CookingTrickery.Core.Contracts
 
         Task AddToFavoriteRecipesAsync(Guid recipeId, string userId);
 
+        Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipesWithIngredient(Guid id);
+
+        Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeCuisineRecipes(Guid id);
+
         Task DeleteRecipeAsync(Guid recipeId);
     }
 }

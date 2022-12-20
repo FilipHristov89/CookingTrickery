@@ -10,10 +10,12 @@ namespace CookingTrickery.Controllers
     public class CuisineController : Controller
     {
         private ICuisineService cuisineService;
+        private IRecipeService recipeService;
 
-        public CuisineController(ICuisineService _cuisineService)
+        public CuisineController(ICuisineService _cuisineService, IRecipeService _recipeService)
         {
             cuisineService = _cuisineService;
+            recipeService = _recipeService;
         }
         [AllowAnonymous]
         public async Task<IActionResult> Cuisines()
@@ -29,7 +31,7 @@ namespace CookingTrickery.Controllers
         {
             var model = await cuisineService.GetCuisineAsync(id);
 
-            model.CuisineRecipe = await cuisineService.GetLastThreeCuisineRecipes(id);
+            model.CuisineRecipe = await recipeService.GetLastThreeCuisineRecipes(id);
 
             return View(model);
         }

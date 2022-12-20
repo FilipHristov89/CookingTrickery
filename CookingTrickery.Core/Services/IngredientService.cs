@@ -105,22 +105,5 @@ namespace CookingTrickery.Core.Services
 
             return ingredient;
         }
-        public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipesWithIngredient(Guid id)
-        {
-            return await repo.AllReadonly<Recipe>()
-                .Where(r => r.Ingredients.Any(i => i.IngredientId == id))
-                .OrderByDescending(r => r.CreatedOn)
-                .Select(r => new RecipePreviewViewModel()
-                {
-                    Id = r.Id,
-                    Name = r.Name,
-                    QuickDescription = r.QuickDescription,
-                    ImageUrl = r.ImageUrl,
-                    Cuisine = r.Cuisine.Name,
-                    User = r.User.UserName,
-                })
-                .Take(3)
-                .ToListAsync();
-        }
     }
 }

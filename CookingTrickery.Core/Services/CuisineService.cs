@@ -41,16 +41,9 @@ namespace CookingTrickery.Core.Services
 
             guard.AgainstNull(user, "User cannot be null");
 
-            if (user == null)
-            {
-                throw new ArgumentException("Invalid user");
-            }
             var cuisine = await repo.GetByIdAsync<Cuisine>(cuisineId);
 
-            if (cuisine == null)
-            {
-                throw new ArgumentException("Invalid cuisine");
-            }
+            guard.AgainstNull(cuisine, "Cuisine cannot be null");
 
             user.FavoriteCuisine = cuisine;
 
@@ -85,24 +78,6 @@ namespace CookingTrickery.Core.Services
                 .FirstAsync();
 
             return cuisine;
-        }
-
-        public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeCuisineRecipes(Guid id)
-        {
-            return await repo.AllReadonly<Recipe>()
-                .Where(r => r.CuisineId == id)
-                .OrderByDescending(r => r.CreatedOn)
-                .Select(r => new RecipePreviewViewModel()
-                {
-                    Id = r.Id,
-                    Name = r.Name,
-                    QuickDescription = r.QuickDescription,
-                    ImageUrl = r.ImageUrl,
-                    Cuisine = r.Cuisine.Name,
-                    User = r.User.UserName,
-                })
-                .Take(3)
-                .ToListAsync();
         }
     }
 }

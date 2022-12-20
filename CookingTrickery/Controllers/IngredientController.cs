@@ -10,11 +10,13 @@ namespace CookingTrickery.Controllers
     public class IngredientController : Controller
     {
         private IIngredientService ingredientService;
-
-        public IngredientController(IIngredientService _service)
+        private IRecipeService recipeService;
+        public IngredientController(IIngredientService _service, IRecipeService _recipeService)
         {
             ingredientService = _service;
+            recipeService = _recipeService;
         }
+
         [AllowAnonymous]
         public IActionResult All()
         {
@@ -25,7 +27,7 @@ namespace CookingTrickery.Controllers
         {
             var model = await ingredientService.GetIngredientAsync(id);
 
-            model.IngredientRecipe = await ingredientService.GetLastThreeRecipesWithIngredient(id);
+            model.IngredientRecipe = await recipeService.GetLastThreeRecipesWithIngredient(id);
 
             return View(model);
         }
