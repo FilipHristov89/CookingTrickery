@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿/*Adding the chosen ingredients/quantity/measurement to the container*/
+$(document).ready(function () {
     document.getElementById('AddIngr').addEventListener('click', function () {
         //console.log('hi');
         event.preventDefault();
@@ -13,35 +14,35 @@
         var quantityDiv = document.createElement('div');
         var measurementDiv = document.createElement('div');
         var deleteButton = document.createElement('button')
-        /*var ingrValidSpan = document.createElement('span');*/
 
+        /*Taking values from selected forms*/
         var ingredientText = ingredient.options[ingredient.selectedIndex].text;
         var quantityValue = quantity.value.trim();
         var measurementText = measurement.options[measurement.selectedIndex].text;
 
         deleteButton.innerText = 'X';
 
+        /*Deleting elements from the ingredinetContainer*/
         deleteButton.addEventListener('click', function () {
             event.preventDefault();
 
             container.removeChild(ingredientContainer);
         });
 
+        /*Adding values to ingredient/quantity/measurement elements*/
         ingredientDiv.textContent = ingredientText;
         quantityDiv.textContent = quantityValue;
         measurementDiv.textContent = measurementText;
 
+        /*Adding id's for ingredient/measurement elements*/
         ingredientDiv.id = ingredient.value;
         measurementDiv.id = measurement.value;
         ingredientContainer.className = 'ingredientsDiv';
 
-        //ingredientDiv.setAttribute('asp-for', '@Model.Test');
-        //ingrValidSpan.setAttribute('asp-validation-for', 'Test');
-
+        /*Appending elements to the container*/
         ingredientContainer.append(quantityDiv);
         ingredientContainer.append(measurementDiv);
         ingredientContainer.append(ingredientDiv);
-        //ingredientContainer.append(ingrValidSpan);
         ingredientContainer.append(deleteButton);
         
         container.appendChild(ingredientContainer);

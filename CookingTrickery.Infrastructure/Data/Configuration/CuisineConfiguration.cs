@@ -8,7 +8,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Cuisine> builder)
         {
-            //builder.HasData(CuisineSeed());
+            builder.HasData(CuisineSeed());
         }
 
         private List<Cuisine> CuisineSeed()

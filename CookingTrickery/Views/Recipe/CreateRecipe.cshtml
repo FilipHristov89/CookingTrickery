@@ -48,7 +48,8 @@
                     </select>
                     <div class="ingredient-popup">
                         Don't see the ingredient you need? Create your own
-                        <input id="Cre-ing" class="btn btn-primary" type="button" value="Create Ingredient" />
+                        <a class="btn btn-warning" asp-controller="Ingredient"
+                              asp-action="CreateIngredient" method="post">Create Ingredient</a>
                     </div>
                     <input id="AddIngr" class="btn btn-toolbar" type="button" value="Add ingredient" />
                 </div>

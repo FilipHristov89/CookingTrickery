@@ -17,6 +17,12 @@ namespace CookingTrickery.Core.Services
             repo = _repo;
         }
 
+
+        /// <summary>
+        /// Create new ingredient
+        /// </summary>
+        /// <param name="model">Create ingredinent view form</param>
+        /// <returns>Add the ingredient to the database</returns>
         public async Task CreateIngredientAsync(CreateIngredientViewModel model)
         {
             var ingredient = new Ingredient()
@@ -33,7 +39,14 @@ namespace CookingTrickery.Core.Services
             await repo.AddAsync(ingredient);
             await repo.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// Gets all ingredients by chosen fiter/s
+        /// </summary>
+        /// <param name="ingredientName">Filter for the name</param>
+        /// <param name="ingredientOrigin">Filter for the origin</param>
+        /// <param name="ingredientType">Filter for the type</param>
+        /// <param name="sorting">Filter for the type of order</param>
+        /// <returns>List of filtered ingredients</returns>
         public async Task<IngredientQueryModel> AllIngredientsAsync(string? ingredientName = null, string? ingredientOrigin = null, IngredientTypeEnum ingredientType = IngredientTypeEnum.None, IngredientSorting sorting = IngredientSorting.Alphabetically)
         {
             var result = new IngredientQueryModel();
@@ -87,6 +100,11 @@ namespace CookingTrickery.Core.Services
             return result;
         }
 
+        /// <summary>
+        /// Get a ingredient by id
+        /// </summary>
+        /// <param name="id">Chosen ingredient</param>
+        /// <returns>Selected Ingredient</returns>
         public async Task<IngredientViewModel> GetIngredientAsync(Guid id)
         {
             var ingredient = await repo.AllReadonly<Ingredient>()

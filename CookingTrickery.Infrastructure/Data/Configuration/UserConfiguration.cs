@@ -14,7 +14,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             UserRelations(builder);
-            //builder.HasData(UserSeed());
+            builder.HasData(UserSeed());
         }
 
         private static void UserRelations(EntityTypeBuilder<User> builder)

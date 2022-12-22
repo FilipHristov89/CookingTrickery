@@ -35,16 +35,18 @@ h3 {
     display: inline-block;
     margin-bottom: 0;
     width: 20rem;
-}
-.cuisine-recipe {
-    display: inline-flex;
-    flex-flow: row wrap;
-    margin-right: 20px;
-    width: 300px;
-    height: 400px;
+    border-block-color: black;
 }
 
-img{
+a{
+    text-decoration: none;
+    color: inherit;  
+}
+a:link{
+    background-color: inherit;
+}
+.recent-recipe img{
     width: 300px;
     height: 300px;
 }
+

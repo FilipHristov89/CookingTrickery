@@ -1,17 +1,17 @@
 ﻿@model IngredientPreviewViewModel
 
 <div>
-    <a class="ingredient-link" asp-area="" asp-controller="Ingredient" asp-action="Ingredient" asp-route-id=@Model.Id>
-        <div>
-            <div>
-                <img src="@Model.ImageUrl" />
+    <div class="card mb-5" style="border-block-color:black">
+        <a class="ingredient-link" asp-area="" asp-controller="Ingredient" asp-action="Ingredient" asp-route-id=@Model.Id>
+            <div class="card" >
+                <img class="card-img-top" style="width: 26rem; height: 26rem" src="@Model.ImageUrl" />
             </div>
-            <div>
-                <p>@Model.Name</p>
-                <p>@Model.Type</p>
-                <p>@Model.Origin</p>
-                <p>@Model.Calories</p>
+            <div class="card text-start">
+                <p>Name: @Model.Name</p>
+                <p>Type: @Model.Type</p>
+                <p>Origin: @Model.Origin</p>
+                <p>Calories: @Model.Calories</p>
             </div>
-        </div>
-    </a>
+        </a>
+    </div>
 </div>

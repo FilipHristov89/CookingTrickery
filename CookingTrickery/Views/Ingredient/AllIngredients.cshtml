@@ -4,7 +4,8 @@
     ViewBag.Title = "All Ingredients";
 }
 
-<h3>All Ingredients</h3></>
+<h1 class="recipes-headers">All Ingredients</h1></>
+<br />
 <div>
     <form method="get">
         <div>
@@ -55,7 +56,8 @@
         <p>No ingredients found</p>
     }
 }
-<div>
+<br />
+<div class="text-center row">
     @foreach (var ingredient in Model.Ingredients)
     {
         <partial name="_IngredientPreviewPartial" model="@ingredient" />

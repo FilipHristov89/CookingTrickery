@@ -26,21 +26,22 @@ namespace CookingTrickery.Core.Services
             guard = _guard;
         }
 
+        /// <summary>
+        /// Adds the recipe to the User's favorite recipes
+        /// </summary>
+        /// <param name="recipeId">Chosen recipe</param>
+        /// <param name="userId">Logged user</param>
+        /// <returns>Save changes to the database</returns>
+        /// <exception">Returs exeption when recipe or user is null</exception>
         public async Task AddToFavoriteRecipesAsync(Guid recipeId, string userId)
         {
             var user = await repo.GetByIdAsync<User>(userId);
 
             guard.AgainstNull(user, "User cannot be null");
-            if (user == null)
-            {
-                throw new ArgumentException("Invalid user");
-            }
+
             var recipe = await repo.GetByIdAsync<Recipe>(recipeId);
 
-            if (recipe == null)
-            {
-                throw new ArgumentException("Invalid cuisine");
-            }
+            guard.AgainstNull(recipe, "Recipe cannot be null");
 
             if (!user.FavoriteRecipes.Any(r => r.RecipeId == recipeId))
             {
@@ -56,6 +57,12 @@ namespace CookingTrickery.Core.Services
             }
         }
 
+        /// <summary>
+        /// Create new recipe
+        /// </summary>
+        /// <param name="model">Create recipe form model</param>
+        /// <param name="userId">Logged user id</param>
+        /// <returns>Save the Recipe to database</returns>
         public async Task CreateRecipeAsync(CreateRecipeViewModel model, string userId)
         {
 
@@ -78,6 +85,10 @@ namespace CookingTrickery.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Get all recipes from database
+        /// </summary>
+        /// <returns>List of Recipe</returns>
         public async Task<IEnumerable<RecipePreviewViewModel>> GetAllRecipeAsync()
         {
             var entities = await repo.AllReadonly<Recipe>()
@@ -97,16 +108,28 @@ namespace CookingTrickery.Core.Services
                 });
         }
 
+        /// <summary>
+        /// Get cuisine for Recipe controller
+        /// </summary>
+        /// <returns>Return list of Cuisine</returns>
         public async Task<IEnumerable<Cuisine>> GetCuisinesAsync()
         {
             return await repo.AllReadonly<Cuisine>().ToListAsync();
         }
 
+        /// <summary>
+        /// Get ingredients for Recipe controller
+        /// </summary>
+        /// <returns>Return list of Ingredient</returns>
         public async Task<IEnumerable<Ingredient>> GetIngredientsAsync()
         {
             return await repo.AllReadonly<Ingredient>().ToListAsync();
         }
 
+        /// <summary>
+        /// Get last three recipes from database
+        /// </summary>
+        /// <returns>List of recent Recipe</returns>
         public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipeAsync()
         {
             var entity = await repo.AllReadonly<Recipe>()
@@ -125,6 +148,12 @@ namespace CookingTrickery.Core.Services
 
             return entity;
         }
+
+        /// <summary>
+        /// Get last three recipes from database by given cuisine
+        /// </summary>
+        /// <param name="id">Selected cuisine id</param>
+        /// <returns>List of Recipe</returns>
         public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeCuisineRecipes(Guid id)
         {
             return await repo.AllReadonly<Recipe>()
@@ -143,6 +172,11 @@ namespace CookingTrickery.Core.Services
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Get last three recipes from database by given ingredient
+        /// </summary>
+        /// <param name="id">Selected ingredient id</param>
+        /// <returns>List of Recipe</returns>
         public async Task<IEnumerable<RecipePreviewViewModel>> GetLastThreeRecipesWithIngredient(Guid id)
         {
             return await repo.AllReadonly<Recipe>()
@@ -161,6 +195,11 @@ namespace CookingTrickery.Core.Services
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Get a recipe by given id
+        /// </summary>
+        /// <param name="id">Recipe id</param>
+        /// <returns>Selected Recipe</returns>
         public async Task<RecipeViewModel> GetRecipeAsync(Guid id)
         {
             var entity = await repo.AllReadonly<Recipe>()
@@ -193,6 +232,11 @@ namespace CookingTrickery.Core.Services
             return entity;
         }
 
+        /// <summary>
+        /// Get user's favorite recipes
+        /// </summary>
+        /// <param name="userId">Logged user id</param>
+        /// <returns>List of Recipes</returns>
         public async Task<IEnumerable<RecipePreviewViewModel>> GetUserFavoriteRecipesAsync(string userId)
         {
             var recipe = await repo.AllReadonly<UsersFavorites>()
@@ -213,7 +257,11 @@ namespace CookingTrickery.Core.Services
         }
 
 
-
+        /// <summary>
+        /// Get the recipes created by the user
+        /// </summary>
+        /// <param name="userId">Logged user id</param>
+        /// <returns>List of Recipe</returns>
         public async Task<IEnumerable<UserRecipesViewModel>> GetUserRecipes(string userId)
         {
             var recipes = await repo.AllReadonly<Recipe>()
@@ -232,6 +280,11 @@ namespace CookingTrickery.Core.Services
             return recipes;
         }
 
+        /// <summary>
+        /// Delete recipe
+        /// </summary>
+        /// <param name="recipeId">Selected recipe id</param>
+        /// <returns>Remove the Recipe and IngredientMeasurement(Ingredients) from database </returns>
         public async Task DeleteRecipeAsync(Guid recipeId)
         {
             var recipe = await repo.GetByIdAsync<Recipe>(recipeId);
@@ -246,7 +299,15 @@ namespace CookingTrickery.Core.Services
             repo.DeleteRange<IngredientMeasurement>(recipeIngredients);
             await repo.SaveChangesAsync();
         }
+        
 
+        /// <summary>
+        /// Create List of IngreadientMeasurement/ingredients/ for the CreateRecipe method.
+        /// </summary>
+        /// <param name="ingredientList">Json stringifined List of Ingredient and Measurement(quantity, measurement)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Throw exception when the state of the model is invalid</exception>
+        /// <exception>Throw custom exception when the ingredientList is null</exception>
         private ICollection<IngredientMeasurement> RecipeIngredients(string ingredientList)
         {
 
@@ -281,6 +342,11 @@ namespace CookingTrickery.Core.Services
             return ingredients;
         }
 
+        /// <summary>
+        /// Check if the state of the model is valid for RecipeIngredients method
+        /// </summary>
+        /// <param name="item">Given object to be verified</param>
+        /// <returns>True for valid or false for invalid object</returns>
         private static bool IsValid(object item)
         {
             var validationContext = new ValidationContext(item);

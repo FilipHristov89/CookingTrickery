@@ -12,6 +12,7 @@ using CookingTrickery.Infrastructure.Data.Entities;
 using Microsoft.CodeAnalysis.CSharp;
 using CookingTrickery.Core.Exceptions;
 using System.Security.Policy;
+using CookingTrickery.Core.Models.Cuisines;
 
 namespace CookingTrickery.UnitTests
 {
@@ -42,19 +43,18 @@ namespace CookingTrickery.UnitTests
 
             cuisineService = new CuisineService(repo, guard);
 
-            await repo.AddAsync(new Cuisine()
+            var cuisine =  new CreateCuisineViewModel()
             {
-                Id = Guid.Parse("b5265e9a-7860-4d72-8e2b-95473d4fffe4"),
                 Name = "African Cuisine",
                 ImageUrl = "",
                 Description = "Some african food"
-            });
+            };
 
-            await repo.SaveChangesAsync();
+            await cuisineService.CreateCuisine(cuisine);
 
-            var dbCuisine = await repo.GetByIdAsync<Cuisine>(Guid.Parse("b5265e9a-7860-4d72-8e2b-95473d4fffe4"));
+            var dbCuisines = repo.AllReadonly<Cuisine>();
 
-            Assert.That(dbCuisine.Description, Is.EqualTo("Some african food"));
+            Assert.That(1, Is.EqualTo(dbCuisines.Count()));
         }
 
         [Test]
@@ -64,8 +64,6 @@ namespace CookingTrickery.UnitTests
             cuisineService = new CuisineService(repo, guard);
 
             await PopulateDatabaseWithCuisines(repo);
-
-            await repo.SaveChangesAsync();
 
             var dbCuisine = await cuisineService.GetCuisineAsync(Guid.Parse("b0de4591-35bc-4500-b84f-ee04c64775ea"));
 
@@ -80,7 +78,6 @@ namespace CookingTrickery.UnitTests
 
             await PopulateDatabaseWithCuisines(repo);
 
-            await repo.SaveChangesAsync();
 
             var dbCuisines = await cuisineService.GetAllCuisinesAsync();
 
@@ -94,17 +91,20 @@ namespace CookingTrickery.UnitTests
             cuisineService = new CuisineService(repo, guard);
 
             await PopulateDatabaseWithCuisines(repo);
+
             await PopulateDatabaseWithUser(repo);
 
-            await repo.SaveChangesAsync();
+            await cuisineService
+                .AddFavoriteCuisineAsync(
+                "bc60d5f7-3884-42c6-9fb5-e1db55094536",
+                Guid.Parse("a6521833-8514-4d09-b7c0-9ee03373ffc5") 
+                );
 
             var dbCuisine = await repo
                 .GetByIdAsync<Cuisine>(Guid.Parse("a6521833-8514-4d09-b7c0-9ee03373ffc5"));
 
             var dbUser = await repo
                 .GetByIdAsync<User>("bc60d5f7-3884-42c6-9fb5-e1db55094536");
-
-            await cuisineService.AddFavoriteCuisineAsync(dbUser.Id, dbCuisine.Id);
 
             Assert.That(dbUser.FavoriteCuisineId, Is.EqualTo(dbCuisine.Id));
         }
@@ -118,7 +118,7 @@ namespace CookingTrickery.UnitTests
 
         private async Task PopulateDatabaseWithCuisines(Repository repo)
         {
-            await repo.AddRangeAsync<Cuisine>(new List<Cuisine>
+            await repo.AddRangeAsync(new List<Cuisine>
             {
                 new Cuisine()
                 {
@@ -142,11 +142,12 @@ namespace CookingTrickery.UnitTests
                     Description = "Bulgarian cuisine is a representative of the cuisine of Southeast Europe. It shares characteristics with other Balkan cuisines. Bulgarian cooking traditions are diverse because of geographical factors such as climatic conditions suitable for a variety of vegetables, herbs, and fruit. Aside from the vast variety of local Bulgarian dishes, Bulgarian cuisine shares a number of dishes with Persian, Turkish, and Greek cuisine.Bulgarian food often incorporates salads as appetizers and is also noted for the prominence of dairy products, wines and other alcoholic drinks such as rakia."
                 }
             });
+            await repo.SaveChangesAsync();
         }
 
         private async Task PopulateDatabaseWithUser(Repository repo)
         {
-            await repo.AddAsync<User>(new User()
+            var guestUser = new User()
             {
                 Id = "bc60d5f7-3884-42c6-9fb5-e1db55094536",
                 UserName = "Guest",
@@ -155,7 +156,10 @@ namespace CookingTrickery.UnitTests
                 LastName = "Petrov",
                 NormalizedUserName = "GUEST",
                 NormalizedEmail = "GUEST@GMAIL.COM"
-            });
+            };
+
+            await repo.AddAsync(guestUser);
+            await repo.SaveChangesAsync();
         }
     }
 }

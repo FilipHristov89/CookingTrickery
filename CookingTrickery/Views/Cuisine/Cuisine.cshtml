@@ -1,12 +1,13 @@
 ﻿@model CuisineViewModel
-{
+@{
     ViewBag.Title = Model.Name;
 }
 
-<h1>@Model.Name</h1>
+<h1 class="recipes-headers">@Model.Name</h1>
+<br />
 <div>
     <div class="wrap">
-        <img src="@Model.ImageUrl" />
+        <img style="width: 70rem; height: 50rem;" src="@Model.ImageUrl" />
         <p>@Model.Description</p>
         @if (User.Identity.IsAuthenticated)
         {
@@ -20,11 +21,11 @@
 @{
     if (!Model.CuisineRecipe.Any())
     {
-        <h4>No recipes found for this cuisine yet!</h4>
-            <p>You know a recipe for the cuisine? Click here to created it!</p>
-        <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
-            <input type="button" class="btn btn-primary" value="Create Recipe" />
-        </a>
+    <h4>No recipes found for this cuisine yet!</h4>
+    <p>You know a recipe for the cuisine? Click here to created it!</p>
+    <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
+                <input type="button" class="btn btn-primary" value="Create Recipe" />
+    </a>
     }
 }
 

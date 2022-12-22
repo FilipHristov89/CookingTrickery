@@ -9,7 +9,7 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<Recipe> builder)
         {
             RecipeRelations(builder);
-            //builder.HasData(RecipeSeed());
+            builder.HasData(RecipeSeed());
         }
 
         private static void RecipeRelations(EntityTypeBuilder<Recipe> builder)

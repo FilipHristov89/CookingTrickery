@@ -7,27 +7,25 @@
 <div class="text-center">
     <h1 class="display-1 recipes-headers">Cooking Trickery</h1>
     <h3 class="display-5 recipes-headers">A Cook's Trickery</h3>
-    <div class="recent-recipes">
+    <div class="">
         <div class="wrap">
             <h4>
                 <span>Recent Recipes</span>
             </h4>
-            @{
-                foreach (var recipe in Model)
-                {
-                    <div class="recent">
-                        <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
-                            <div class="recent-recipe">
-                                <img src="@recipe.ImageUrl">
-                                <p class="recipe-title">@recipe.Name</p>
-                                <p class="recipe-quickdesc">Description: @recipe.QuickDescription</p>
-                                <p class="recipe-cuisine">Cuisine: @recipe.Cuisine</p>
-                                <p class="recipe-user">Created by: @recipe.User</p>
-                            </div>
-                        </a>
-                    </div>
+            <div class="recent">
+                @foreach (var recipe in Model)
+                { 
+                    <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
+                        <div class="card recent-recipe col-7">
+                            <img src="@recipe.ImageUrl">
+                            <p class="recipe-title">@recipe.Name</p>
+                            <p class="recipe-quickdesc">Description: @recipe.QuickDescription</p>
+                            <p class="recipe-cuisine">Cuisine: @recipe.Cuisine</p>
+                            <p class="recipe-user">Created by: @recipe.User</p>
+                        </div>
+                    </a>
                 }
-            }
+            </div>
         </div>
     </div>
 </div>

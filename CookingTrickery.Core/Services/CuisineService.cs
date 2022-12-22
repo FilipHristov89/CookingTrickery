@@ -21,6 +21,11 @@ namespace CookingTrickery.Core.Services
             guard = _guard;
         }
 
+        /// <summary>
+        /// Create cuisine
+        /// </summary>
+        /// <param name="model">The View model for the Create form</param>
+        /// <returns>Adds the cuisine to the database</returns>
         public async Task CreateCuisine(CreateCuisineViewModel model)
         {
             var cuisine = new Cuisine()
@@ -35,6 +40,12 @@ namespace CookingTrickery.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Adds selected cuisine as user's favorite
+        /// </summary>
+        /// <param name="userId">Logged user Id</param>
+        /// <param name="cuisineId">Chosen cuisine id</param>
+        /// <returns>Save the changes in User's FavoriteCuisine row</returns>
         public async Task AddFavoriteCuisineAsync(string userId, Guid cuisineId)
         {
             var user = await repo.GetByIdAsync<User>(userId);
@@ -50,6 +61,10 @@ namespace CookingTrickery.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Get all cuisines from database
+        /// </summary>
+        /// <returns>List of all cuisines</returns>
         public async Task<IEnumerable<CuisinePreviewViewModel>> GetAllCuisinesAsync()
         {
             var cuisines = await repo.AllReadonly<Cuisine>()
@@ -64,6 +79,11 @@ namespace CookingTrickery.Core.Services
             return cuisines;
         }
 
+        /// <summary>
+        /// Get a cuisine by id
+        /// </summary>
+        /// <param name="id">Chosen cuisine id</param>
+        /// <returns>Selected Cuisine</returns>
         public async Task<CuisineViewModel> GetCuisineAsync(Guid id)
         {
             var cuisine = await repo.AllReadonly<Cuisine>()

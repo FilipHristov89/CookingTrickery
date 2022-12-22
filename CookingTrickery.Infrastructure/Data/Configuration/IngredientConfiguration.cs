@@ -11,19 +11,8 @@ namespace CookingTrickery.Infrastructure.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
-            //IngredientTypeConversion(builder);
-            //builder.HasData(IngredientSeed());
+            builder.HasData(IngredientSeed());
         }
-
-        //private void IngredientTypeConversion(EntityTypeBuilder<Ingredient> builder)
-        //{
-        //    builder
-        //        .Property(i => i.Type)
-        //        .HasConversion(
-        //            t => t.ToString(),
-        //            t => (IngredientTypeEnum)Enum.Parse(typeof(IngredientTypeEnum), t)
-        //            );
-        //}
 
         private List<Ingredient> IngredientSeed()
         {

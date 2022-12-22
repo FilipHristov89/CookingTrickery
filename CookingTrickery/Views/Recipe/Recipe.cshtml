@@ -4,42 +4,51 @@
 }
 
 <h1 class="display-1 recipes-headers">@Model.Name</h1>
-
-<div class="recipe-container">
-    <div class="recipe-quickdescr">@Model.QuickDescription</div>
-    <div class="recipe-body">
-        <img src="@Model.ImageUrl">
-        <div class="ingredient-list">
-            <h4>
-                <span>Ingredients</span>
-            </h4>
-            <ul class="ingredients">
-                @foreach (var ingredient in Model.Ingredients)
+<br />
+<div class="recipe-container" style="display:inline">
+    <div class="row">
+        <div class="recipe-quickdescr">@Model.QuickDescription</div>
+        <br />
+        <div class="recipe-body">
+            <div class="col-4">
+                <img style="width: 70rem; height: 50rem;" src="@Model.ImageUrl">
+            </div>
+            <br />
+            <div class="ingredient-list">
+                <h4>
+                    <span>Ingredients</span>
+                </h4>
+                <ul class="ingredients">
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                        <li class="ingredient">@ingredient.Quantity @ingredient.Measurement @ingredient.Ingredient</li>
+                    }
+                </ul>
+            </div>
+            <br />
+            <div class="time-portions">
+                <p>Portions: @Model.NumberOfServings</p> <p>Time : @Model.PrepTime</p>
+            </div>
+            <div class="recipe-descr">
+                Description: @Model.Description
+            </div>
+            <div class="form-inline">
+            @if (User.Identity.IsAuthenticated)
+            { 
+                <form class="ml-2" asp-controller="Recipe"
+                  asp-action="AddToFavoriteRecipes" asp-route-id="@Model.Id" method="post">
+                    <input class="btn btn-primary" type="submit" value="Favorite" />
+                </form>
+                @if (User.Identity.Name == Model.User || this.User.IsInRole("Administrator"))
                 {
-                    <li class="ingredient">@ingredient.Quantity @ingredient.Measurement @ingredient.Ingredient</li>
+                    <form class="ml-2" asp-controller="Recipe"
+                  asp-action="DeleteRecipe" asp-route-id="@Model.Id" method="post">
+                        <input class="btn btn-primary" type="submit" value="Delete" />
+                    </form>
                 }
-            </ul>
+            }
+            </div>
+            @*<div class="rating">Rating5</div>*@
         </div>
-        <div class="time-portions">
-            <p>Portions: @Model.NumberOfServings</p> <p>Time : @Model.PrepTime</p>
-        </div>
-        <div class="recipe-descr">
-            @Model.Description
-        </div>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <form class="ml-2" asp-controller="Recipe"
-              asp-action="AddToFavoriteRecipes" asp-route-id="@Model.Id" method="post">
-                <input class="btn btn-primary" type="submit" value="Favorite" />
-            </form>
-        }
-        @if (User.Identity.Name == Model.User || this.User.IsInRole("Administrator"))
-        {
-            <form class="ml-2" asp-controller="Recipe"
-              asp-action="DeleteRecipe" asp-route-id="@Model.Id" method="post">
-                <input class="btn btn-primary" type="submit" value="Delete" />
-            </form>
-        }
-        <div class="rating">5</div>
     </div>
 </div>

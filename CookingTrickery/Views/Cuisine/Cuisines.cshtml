@@ -3,16 +3,19 @@
     ViewBag.Title = "Cuisines";
 }
 
-<h1>Cuisines</h1>
-<div>
-    <div class="wrap">
-        <div>
+<h1 class="recipes-headers">Cuisines</h1>
+<br />
+<div class="text-center row">
+    <div class="col-md-4">
+        <div class="card mb-5" style="border-block-color:black" display: inline-block>
             @foreach (var cuisine in Model)
             {
                 <a class="cusine-link" asp-controller="Cuisine" asp-action="Cuisine" asp-route-id = "@cuisine.Id">
-                    <div class="cuisine-info">
-                        <img src="@cuisine.ImageUrl">
-                        <p>@cuisine.Name</p>
+                    <div class="card">
+                        <img class="card-img-top" style="width: 26rem; height: 26rem" src="@cuisine.ImageUrl" />
+                    </div>
+                    <div class="card text-start">
+                        <p>Name: @cuisine.Name</p>
                     </div>
                 </a>
             }

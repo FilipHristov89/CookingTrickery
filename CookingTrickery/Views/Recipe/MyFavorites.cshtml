@@ -4,6 +4,8 @@
     ViewBag.Title = "My Favorites";
 }
 
+<h1 class="recipes-headers">My Favorites Recipes</h1>
+<br/>
 <div>
     <div>
         <div>
@@ -19,7 +21,7 @@
             {
                 @foreach (var recipe in Model)
                 {
-                    <div>
+                    <div class ="card recent-recipe">
                         <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="Recipe" asp-route-id="@recipe.Id">
                             <div>
                                 <img src="@recipe.ImageUrl">

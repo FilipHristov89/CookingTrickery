@@ -5,11 +5,12 @@
 }
 
 <h1 class="ingredient-headers">@Model.Name</h1>
-<div class="ingredient-container">
-    <div class="ingredient-img">
-        <img src="@Model.ImageUrl" />
+<br />
+<div class="container style=" display:inline"">
+    <div class="col-7 ingredient-img">
+        <img class="card-img-top" style="width: 40rem; height: 40rem" src="@Model.ImageUrl" />
     </div>
-    <div class="ingredient-prop">
+    <div class="ingredient-prop" >
         <div class="ingredient-type">
             <p>Ingredient Type: @Model.Type</p>
         </div>
@@ -19,28 +20,32 @@
         <div class="ingredient-calories">
             <p>Calories: @Model.Calories kcal</p>
         </div>
-    </div>
-    <div class="ingredient-descr">
-        <p>
-            @Model.Description
-        </p>
+    
+        <div class="ingredient-descr">
+            <p>
+                Description: @Model.Description
+            </p>
+        </div>
     </div>
 </div>
 
-@{
-    if (!Model.IngredientRecipe.Any())
-    {
-        <h4>No recipes found for this ingredient!</h4>
-        <p>You know a recipe with this ingredient? Click here to created it!</p>
-       <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
-            <input type="button" class="btn btn-primary" value="Create Recipe"/>
-       </a>
+<div class="col-5" style="display:inline">
+    @{
+        if (!Model.IngredientRecipe.Any())
+        {
+                <h4>No recipes found for this ingredient!</h4>
+            <p>
+                You know a <b>recipe</b> with this <b>ingredient</b>? Click here to created it! </p>
+               <a class="recipe-link" asp-area="" asp-controller="Recipe" asp-action="CreateRecipe">
+                    <input type="button" class="btn btn-primary" value="Create Recipe"/>
+               </a>
+        }
     }
-}
 
-<div>
-    @foreach (var recipe in Model.IngredientRecipe)
-    {
-        <partial name="_RecipesByEntityPartial" model="@recipe" />
-    }
+    <div>
+        @foreach (var recipe in Model.IngredientRecipe)
+        {
+            <partial name="_RecipesByEntityPartial" model="@recipe" />
+        }
+    </div>
 </div>
